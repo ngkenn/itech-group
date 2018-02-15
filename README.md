@@ -9,3 +9,10 @@ Repository for the Internet Technology Group Project
 - Wu KaiKan
 - Chuy Galván
 
+# Week 1 - People's JObs
+
+Jamie - User Authentication
+Chuy - Models
+Parvir - Templates
+KaiKan - Picture uploading
+Neil - Views
