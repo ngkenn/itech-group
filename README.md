@@ -10,9 +10,8 @@ Repository for the Internet Technology Group Project
 - Chuy Galván
 
 # Week 1 - People's JObs
-
-Jamie - User Authentication
-Chuy - Models
-Parvir - Templates
-KaiKan - Picture uploading
-Neil - Views
+- Jamie - User Authentication
+- Chuy - Models
+- Parvir - Templates
+- KaiKan - Picture uploading
+- Neil - Views
