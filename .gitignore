@@ -1,5 +1,12 @@
+# Django files
 db.sqlite3
 __pycache__/
 *.pyc
+migrations/
+
+# System files
 .DS_Store
+
+# IDE/text editor generated files
 .idea
+.vscode
