@@ -1,0 +1,16 @@
+{% extends 'actifind/baseActiFind.html' %}
+{% load staticfiles %}
+
+{% block title_block %}
+    {{ activity.name }}
+{% endblock %}
+
+{% block body_block %}
+    <div>
+        {% if activity %}
+            <h1>{{ activity.name }}</h1>
+        {% else %}
+            The specified activity does not exist!
+        {% endif %}
+    </div>
+{% endblock %}
