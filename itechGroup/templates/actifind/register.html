@@ -1,3 +1,4 @@
+{%  extends 'actifind/base.html' %}
 <!-- Extension of base, which needs a folder to locate? -->
 {% load staticfiles %}
 
@@ -5,6 +6,7 @@
     Register Page
 {% endblock %}
 
+{%  block body_block %}
 <div>
     <h1>Register an account</h1>
        <!-- Previous search bar -->
@@ -23,6 +25,7 @@
         <h3>
             Continue with facebook link - API
         </h3>
+         <a href="{% url 'social:begin' 'facebook' %}">Login with Facebook</a>
             Pictures
         <!-- Pictures of user photos  -->
     </div>
