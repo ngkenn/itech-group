@@ -1,14 +1,14 @@
 from django.shortcuts import render
 from django.http import HttpResponse
-from rango.models import Review
-from rango.forms import ReviewForm
+from actifind.models import Review
+from actifind.forms import ReviewForm
 
 
 def index(request):
     response = render(request, 'actifind/index.html')
     return response
 
-def add_page(request, activity_name_slug):
+def add_review(request, activity_name_slug):
     try:
         activity = Activity.objects.get(slug=activity_name_slug)
     except Activity.DoesNotExist:
@@ -18,7 +18,7 @@ def add_page(request, activity_name_slug):
     if requect.method == 'POST':
         form = PageForm(request.POST)
 
-        if form,is_valid():
+        if form.is_valid():
             if activity:
                 review = form.save(commit=False)
                 review.activity = activity

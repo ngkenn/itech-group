@@ -1,13 +1,10 @@
 from django import forms
-from rango.models import Review, Activity, Picture
+from actifind.models import Review, Activity, Picture
 
-class ReviewForm(forms.modelForm):
+class ReviewForm(forms.ModelForm):
     title = forms.CharField(max_length=128)
     date = forms.DateField(widget=forms.HiddenInput())
-    rating = forms.PositiveSmallIntegerField(
-        validators=[MaxValueValidator(5), MinValueValidator(1)]
-    )
-    article = models.ForeignKey(Activity)
+    rating = forms.IntegerField()
     class Meta:
         model = Review
-        
+        exclude= ('activity',)
