@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from actifind.models import Review
-from actifind.forms import ReviewForm
+from actifind.forms import ReviewForm, UserForm, UserProfileForm
 from actifind.models import Activity
 
 
@@ -11,8 +11,46 @@ def index(request):
 
 
 def register(request):
-    response = render(request, 'actifind/register.html')
-    return response
+
+    registered = False
+
+    # If its a HTTP POST, we process form data
+    if request.method == 'POST':
+
+        user_form = UserForm(data=request.POST)
+        profile_form = UserProfileForm(data=request.POST)
+
+        # If the forms are valid:
+        if user_form.is_valid() and profile_form.is_valid():
+
+            user = user_form.save()
+
+            user.set_password(user.password)
+            user.save()
+
+            profile = profile_form.save(commit=False)
+            profile.user = user
+
+            if 'picture' in request.FILES:
+                profile.picture = request.FILES['picture']
+
+            # now save UserProfile model instance
+                profile.save()
+
+            # Update variable to show registration successful
+                registered = True
+        else:
+            print(user_form.errors, profile_form.errors)
+    else:
+            # Invalid. Print problems to terminal
+        user_form = UserForm()
+        profile_form = UserProfileForm()
+
+        #Render template
+    return render(request,'actifind/register.html',
+                {'user_form': user_form,
+                 'profile_form': profile_form,
+                    'registered': registered})
 
 
 def add_review(request, activity_name_slug):

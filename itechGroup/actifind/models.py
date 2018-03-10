@@ -2,6 +2,7 @@ from django.db import models
 from django.template.defaultfilters import slugify
 from django.core.validators import MaxValueValidator, MinValueValidator
 from django.db.models import Avg
+from django.contrib.auth.models import User
 
 class Tag(models.Model):
     name = models.CharField(max_length=64, unique=True)
@@ -45,6 +46,7 @@ class Picture(models.Model):
     def __str__(self):
         return self.name
 
+
 class Review(models.Model):
     title = models.CharField(max_length=128)
     date = models.DateField()
@@ -55,3 +57,12 @@ class Review(models.Model):
 
     def __str__(self):
         return self.title
+
+
+class UserProfile(models.Model):
+    user = models.OneToOneField(User)
+    website = models.URLField(blank=True)
+    picture = models.ImageField(upload_to='profile_images', blank=True)
+
+    def __str__(self):
+        return self.user.username
