@@ -1,0 +1,44 @@
+.Pridi{font-family: Pridi;
+        font-size: 20px;}
+.Athiti{font-family: Athiti;
+font-size:16px;}
+
+.bluebackground{background-color:#5DADE2;}
+
+.graybackground{background-color:#a9b5c9;
+padding-bottom:10px;}
+
+nav {padding-top:5px;
+     padding-bottom:2px;
+     }
+
+
+.bluebutton{width:100%;
+background-color:#5DADE2;
+  color:black;
+border:none;
+border-radius:4px;}
+
+input {
+  width:100%;
+padding-left:20px;
+  padding-top:10px;
+border: 1px solid black;
+border-radius: 4px;}
+
+
+
+.hover:hover{transform:scale(1.05);}
+
+.logoSize{
+    width:25px;
+    height:auto;
+}
+
+.float-right{
+    float: right;
+}
+.float-left{
+    float: left;
+}
+
