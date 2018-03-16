@@ -16,11 +16,14 @@ class UserForm(forms.ModelForm):
 
     class Meta:
         model = User
+        help_texts = {
+            'username': None,
+        }
         fields = ('username', 'email', 'password')
 
 
 class UserProfileForm(forms.ModelForm):
     class Meta:
         model = UserProfile
-        fields = ('website', 'picture')
+        fields = ('picture',)
 

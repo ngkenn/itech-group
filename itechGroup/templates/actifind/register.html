@@ -1,5 +1,5 @@
 {% extends 'actifind/base.html' %}
-{%  load staticfiles %}
+{% load staticfiles %}
 {% block extra_head %}
     <link rel="stylesheet" href="{% static 'css/register.css' %}">
 {% endblock %}
@@ -11,39 +11,38 @@
 
 {% block body_block %}
     <div>
-        <h1>Register an account</h1>
-        {% if registered %}
-            <strong> Thanks for registering!</strong>
-            <a href="{% url 'index' %}"> Go to homepage</a><br/>
-        {% else %}
-            <strong>Register</strong>
-            <form id="user_form" method="post" action="{% url 'register' %}"
-                  enctype="multipart/form-data">
+        <h1 class="text-center">Register an account</h1>
+        <div class="container">
+            {% if registered %}
+                <strong> Thanks for registering!</strong>
+                <a href="{% url 'index' %}"> Go to homepage</a><br/>
+            {% else %}
+                <form id="user_form" method="post" action="{% url 'register' %}"
+                      enctype="multipart/form-data">
 
-                {% csrf_token %}
+                    {% csrf_token %}
 
-                {{ user_form.as_p }}
-                {{ profile_form.as_p }}
-                <input type="submit" name="submit" value="Register"/>
+                    {{ user_form.as_p }}
+                    {{ profile_form.as_p }}
 
-            </form>
-        {% endif %}
+                    <input type="submit" name="submit" value="Register"/>
 
+                </form>
+            {% endif %}
+            <br/>
+            <p class="text-center"> Already have an account? - <a href="#">Login</a></p>
+
+        </div>
         <div>
-            <h3>
-                Continue with facebook link - API
-            </h3>
-
+            <h2 class="text-center"><strong>OR </strong></h2>
+            <br/>
             <a href="{% url 'social:begin' 'facebook' %}">
                 <button class="loginBtn loginBtn--facebook">Login with Facebook
                 </button>
             </a>
 
-
-            <!-- Pictures of user photos  -->
         </div>
 
-        Already have an account? - Login
 
     </div>
 {% endblock %}
