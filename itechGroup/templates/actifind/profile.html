@@ -1,0 +1,12 @@
+
+{% extends 'actifind/base.html' %}
+{% load staticfiles %}
+
+{% block title_block %}
+    Your Profile
+{% endblock %}
+
+{% block body_block %}
+<a href="{% url 'logout' %}">Logout</a>
+
+{% endblock %}

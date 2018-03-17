@@ -1,0 +1,32 @@
+{% extends 'actifind/base.html' %}
+{% load staticfiles %}
+{% block extra_head %}
+    <link rel="stylesheet" href="{% static 'css/register.css' %}">
+{% endblock %}
+
+{% block title_block %}
+    Login
+{% endblock %}
+
+{% block body_block %}
+    <h1 class="text-center">Login to Actifind</h1>
+    <div class="container">
+        <form id="login_form" method="post" action="{% url 'login' %}">
+            {% csrf_token %}
+            Username: <input type="text" name="username" value="" size="50"/> <br/>
+            Password: <input type="password" name="password" value="" size="50"/> <br/>
+            <input type="submit" value="submit"/>
+        </form>
+    </div>
+    <br/>
+    <div>
+        <h2 class="text-center"><strong>OR </strong></h2>
+        <br/>
+        <a href="{% url 'social:begin' 'facebook' %}">
+            <button class="loginBtn loginBtn--facebook">Login with Facebook
+            </button>
+        </a>
+
+    </div>
+    <h3 class="text-center"><a href="{% url 'register' %}">Sign Up</a> For An Account</h3>
+{% endblock %}

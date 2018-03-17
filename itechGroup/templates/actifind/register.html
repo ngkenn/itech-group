@@ -1,33 +1,48 @@
-<!-- Extension of base, which needs a folder to locate? -->
+{% extends 'actifind/base.html' %}
 {% load staticfiles %}
-
-{% block title_block %}
-    Register Page
+{% block extra_head %}
+    <link rel="stylesheet" href="{% static 'css/register.css' %}">
 {% endblock %}
 
-<div>
-    <h1>Register an account</h1>
-       <!-- Previous search bar -->
 
+{% block title_block %}
+    Register
+{% endblock %}
+
+{% block body_block %}
     <div>
-        <h2>
-            Box with forms
-                -Username
-                -Email
-                -Password
+        <h1 class="text-center">Register an account</h1>
+        <div class="container">
+            {% if registered %}
+                <strong> Thanks for registering!</strong>
+                <a href="{% url 'index' %}"> Go to homepage</a><br/>
+            {% else %}
+                <form id="user_form" method="post" action="{% url 'register' %}"
+                      enctype="multipart/form-data">
 
-            Create account button
-            <!-- Maps API + Search results-->
-        </h2>
-            OR
-        <h3>
-            Continue with facebook link - API
-        </h3>
-            Pictures
-        <!-- Pictures of user photos  -->
+                    {% csrf_token %}
+
+                    {{ user_form.as_p }}
+                    {{ profile_form.as_p }}
+
+                    <input type="submit" name="submit" value="Register"/>
+
+                </form>
+            {% endif %}
+            <br/>
+            <p class="text-center"> Already have an account? - <a href="/actifind/login/">Login</a></p>
+
+        </div>
+        <div>
+            <h2 class="text-center"><strong>OR </strong></h2>
+            <br/>
+            <a href="{% url 'social:begin' 'facebook' %}">
+                <button class="loginBtn loginBtn--facebook">Login with Facebook
+                </button>
+            </a>
+
+        </div>
+
+
     </div>
-
-    Already have an account? - Login
-
-</div>
 {% endblock %}
