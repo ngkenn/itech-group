@@ -144,4 +144,4 @@ SOCIAL_AUTH_FACEBOOK_SECRET = 'c55f4f4e3ce02ffdeb30d6b45aead3a4' # App secret
 
 LOGIN_URL = 'login'
 LOGOUT_URL = 'logout'
-LOGIN_REDIRECT_URL = 'home'
+LOGIN_REDIRECT_URL = 'index'

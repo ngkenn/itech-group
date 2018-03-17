@@ -1,8 +1,12 @@
 from django.shortcuts import render
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
 from actifind.models import Review
 from actifind.forms import ReviewForm, UserForm, UserProfileForm
 from actifind.models import Activity
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth import logout
+from django.contrib.auth import authenticate, login
+from django.core.urlresolvers import reverse
 
 
 def index(request):
@@ -74,3 +78,34 @@ def add_review(request, activity_name_slug):
 
     context_dict = {'form':form, 'activity': activity}
     return render(request, 'actifind/add_review.html', context_dict)
+
+
+def user_login(request):
+    if request.method == 'POST':
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+        user = authenticate(username=username, password=password)
+
+        if user:
+            if user.is_active:
+                login(request, user)
+                return HttpResponseRedirect(reverse('index'))
+            else:
+                return HttpResponse("Your Actifind account is disabled.")
+        else:
+            print("Invalid login details: {0}, {1}".format(username, password))
+            return HttpResponse("Invalid login details supplied.")
+
+    else:
+        return render(request, 'actifind/login.html', {})
+
+
+@login_required
+def user_logout(request):
+    logout(request)
+    return HttpResponseRedirect(reverse('index'))
+
+
+@login_required
+def profile(request):
+    return render(request, 'actifind/profile.html/', {})

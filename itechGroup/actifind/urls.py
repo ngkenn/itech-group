@@ -6,8 +6,10 @@ from actifind import views
 urlpatterns = [
     url(r'^$', views.index, name='index'),
     url(r'^register/$', views.register, name='register'),
-    url(r'^login/$', auth_views.login, name='login'),
-    url(r'^logout/$', auth_views.logout, name='logout'),
+  #  url(r'^login/$', auth_views.login, name='login'),
+    url(r'^logout/$', views.user_logout, name='logout'),
+    url(r'^login/$', views.user_login, name='login'),
+    url(r'^profile/$', views.profile, name='profile'),
     url(r'^oauth/', include('social_django.urls', namespace='social')),
     url(r'^activity/(?P<activity_name_slug>[\w\-]+)/add_review/$',
         views.add_review, name='add_review'),

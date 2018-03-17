@@ -16,10 +16,24 @@
             <nav><a href="/actifind/"><img src="{% static "images/actifind_logo.png" %}"
                                                               alt="actifind logo" class="logoSize"/></a></nav>
         </div>
+    <div>
+    {% if user.is_authenticated %}
         <div class="col-xs-1 float-right">
-            <nav class="hover"><a href="/actifind/register/" style="color: black"><i
+            <nav class="hover"><a href="/actifind/profile/" style="color: black"><i
                     class="fa fa-user"></i></a></nav>
         </div>
+        <div class="col-xs-2 float-right">
+             <nav class="usernameDisplay">Hi, {{ user.username }}</nav>
+        </div>
+
+    {% else %}
+        <div class="col-xs-2 float-right">
+            <nav class="hover"><a href="/actifind/login/" style="color: black"><i
+                    class="fa fa-user"></i></a></nav>
+        </div>
+    {% endif %}
+        </div>
+    </div>
     </div>
 </header>
 
