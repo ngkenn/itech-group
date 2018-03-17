@@ -12,7 +12,7 @@ class Tag(models.Model):
 
 class Activity(models.Model):
     name = models.CharField(max_length=128, unique=True)
-    type = models.CharField(max_length=128)
+    activity_type = models.CharField(max_length=128)
     address = models.CharField(max_length=516)
     description = models.TextField()
     slug = models.SlugField(unique=True)
@@ -53,7 +53,7 @@ class Review(models.Model):
     rating = models.PositiveSmallIntegerField(
         validators=[MaxValueValidator(5), MinValueValidator(1)]
     )
-    article = models.ForeignKey(Activity)
+    activity = models.ForeignKey(Activity)
 
     def __str__(self):
         return self.title
