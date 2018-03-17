@@ -12,8 +12,8 @@ class Tag(models.Model):
 class Activity(models.Model):
     name = models.CharField(max_length=128, unique=True)
     type = models.CharField(max_length=128)
+    address = models.CharField(max_length=516)
     description = models.TextField()
-    # location: wait until Google Maps API implementation to decide best way to store data
     slug = models.SlugField(unique=True)
     tags = models.ManyToManyField(Tag)
 

@@ -6,11 +6,18 @@
 {% endblock %}
 
 {% block body_block %}
-    <div>
-        {% if activity %}
-            <h1>{{ activity.name }}</h1>
-        {% else %}
-            The specified activity does not exist!
-        {% endif %}
-    </div>
+  <div>
+    {% if activity %}
+      <h1>{{ activity.name }}</h1>
+      
+      <p>Type of activity: {{activity.type}}</p>
+      <p>Description: {{ activity.description }}</p>
+      
+      <iframe width="600" height="450" frameborder="0" style="border:0" src="https://www.google.com/maps/embed/v1/place?q={{ activity.address }}&key={{ GOOGLE_MAPS_KEY }}"
+        allowfullscreen></iframe>
+    
+    {% else %} 
+      The specified activity does not exist! 
+    {% endif %}
+  </div>
 {% endblock %}
