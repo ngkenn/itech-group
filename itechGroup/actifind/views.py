@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect
 from actifind.models import Review
-from actifind.forms import ReviewForm, UserForm, UserProfileForm, ActivityForm
+from actifind.forms import ReviewForm, UserForm, UserProfileForm, ActivityForm, UploadPictureForm
 from actifind.models import Activity
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import logout
@@ -142,3 +142,32 @@ def user_logout(request):
 @login_required
 def profile(request):
     return render(request, 'actifind/profile.html/', {})
+
+def upload_picture(request):    #only if logged in - set as variable in the HTML? IF Logged in etc...
+    if request.method == 'POST':
+        form = UploadPictureForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            return render(request,'actifind/register.html') #Back to index page? or to confirmation page
+    else:
+        form = UploadPictureForm()
+    return render(request, 'actifind/index.html', {'form': form})
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

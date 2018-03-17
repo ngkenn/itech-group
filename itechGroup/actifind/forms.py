@@ -40,3 +40,10 @@ class UserProfileForm(forms.ModelForm):
     class Meta:
         model = UserProfile
         fields = ('picture',)
+
+#Upload Picture form
+class UploadPictureForm(forms.ModelForm):
+    picture = forms.ImageField(required=False)
+    class Meta:
+        model = Picture
+        fields = ('name', 'description', 'picture', 'activity',)

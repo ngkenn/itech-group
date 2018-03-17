@@ -18,7 +18,7 @@ STATIC_DIR = os.path.join(BASE_DIR, 'static')
 
 SETTINGS_DIR = os.path.dirname(__file__)
 TEMPLATE_DIR = os.path.join(BASE_DIR, 'templates')
-STATIC_DIR = os.path.join(BASE_DIR, 'static')
+#STATIC_DIR = os.path.join(BASE_DIR, 'static')
 MEDIA_DIR = os.path.join(BASE_DIR, 'media')
 
 PROJECT_PATH = os.path.join(SETTINGS_DIR, os.pardir)
