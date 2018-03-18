@@ -8,10 +8,13 @@ from django.contrib.auth import logout
 from django.contrib.auth import authenticate, login
 from django.core.urlresolvers import reverse
 from django.conf import settings
+from django.db.models import Q
+
 
 def index(request):
     response = render(request, 'actifind/index.html')
     return response
+
 
 def show_activity(request, activity_name_slug):
     context_dict = {
@@ -154,6 +157,17 @@ def upload_picture(request):    #only if logged in - set as variable in the HTML
     return render(request, 'actifind/index.html', {'form': form})
 
 
+def search(request):
+    q = request.GET.get('q')
+    error_msg = ''
+
+    if not q:
+        error_msg = "Please enter search keywords"
+        return render(request, 'actifind/index.html', {'error_msg': error_msg})
+
+    activity_list = Activity.objects.filter(Q(title__icontains=q) | Q(body__icontains=q))
+    return render(request, 'actifind/index.html', {'error_msg': error_msg,
+                                               'activity': activity_list})
 
 
 
