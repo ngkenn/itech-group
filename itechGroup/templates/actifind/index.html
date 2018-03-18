@@ -29,6 +29,21 @@
             <h5>
                 Featured
             </h5>
+        </div>
+        <div>
+        {% if activities %}
+      <ul>
+        {% for category in categories %}
+          <li>
+            <a href="{% url 'show_activity' activity.slug %}">{{ activity.name }}</a>
+          </li>
+        {% endfor %}
+      </ul>
+        {% else %}
+          <strong>There are no activities present.</strong>
+        {% endif %}
+      </div>
+      <div>
 
             <form method="post" action="{% url 'upload_picture' %}" enctype="multipart/form-data">
 
@@ -42,7 +57,7 @@
 
 
             <!-- Pictures of user photos  -->
-        </div>
+      </div>
 
     </div>
 {% endblock %}
