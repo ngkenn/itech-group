@@ -19,10 +19,10 @@ class Activity(models.Model):
     description = models.TextField()
     slug = models.SlugField(unique=True)
     tags = models.ManyToManyField(Tag)
- 
+
     @property
     def avgRating(self):
-        return self.review_set.aggregate(Avg('rating')).values()[0] or "No rating"
+        return self.review_set.aggregate(Avg('rating'))['rating__avg'] or "No rating"
 
     def save(self, *args, **kwargs):
         self.slug = slugify(self.name)
