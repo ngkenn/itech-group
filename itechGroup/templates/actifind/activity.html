@@ -11,18 +11,28 @@
 
     {% if activity %}
 
-      <div class="row">
+      <div class="row" style="margin-top:50px;">
         <div class="col-md-4 col-12">
             <iframe width="100%" height="250" frameborder="0" src="https://www.google.com/maps/embed/v1/place?q={{ activity.address }}&key={{ GOOGLE_MAPS_KEY }}" allowfullscreen></iframe>
               
             <h2>{{ activity.name }}</h2>
+            <p>{% show_stars activity.avgRating show_rating=True %}</p>
             <p>Type of activity: {{activity.activity_type}}</p>
             <p>Description: {{ activity.description }}</p>
-            {% show_stars activity.avgRating show_rating=True %}
+
+            {% if activity.tags.count > 0 %}
+              <p>Tags:
+                {% for tag in activity.tags.all %}
+                  <span class="badge badge-secondary">{{tag.name}}</span>
+                {% endfor %}
+              </p> 
+              
+            {% endif %}
         </div>
 
-        <div class="col">
+        <div class="col-md-8 col-12">
             <div class="activity-pictures">
+              <div style="width:100%; height:350px; background-color:gray;">Placeholder for pictures</div>
               {% if activity.picture_set.count > 0 %}
 
               {% else %}
