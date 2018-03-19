@@ -1,0 +1,85 @@
+{% extends 'actifind/base.html' %} 
+{% load staticfiles %} 
+
+{% block title_block %} 
+    Add an activity 
+{% endblock %}
+
+{% block body_block %}
+
+    <h1>Add an activity</h1>
+    <div>
+        <form id="category_form" method="post" action="/actifind/add_activity/">
+            {% csrf_token %} {% for hidden in form.hidden_fields %} {{ hidden }} {% endfor %} {% for field in form.visible_fields %}
+            {{ field.errors }} {{ field.help_text }} {{ field }}
+            <br/> {% endfor %}
+
+            <iframe id="iframemaps" width="600" height="450" frameborder="0" style="border:0" allowfullscreen hidden>
+            </iframe>
+            <br/>
+
+            <input type="submit" name="submit" value="Create Activity" />
+        </form>
+    </div>
+
+    <style>
+        /* Always set the map height explicitly to define the size of the div
+                * element that contains the map. */
+
+        #map {
+            height: 100%;
+        }
+
+        /* Optional: Makes the sample page fill the window. */
+
+        html,
+        body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+    </style>
+    <link type="text/css" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500">
+    <style>
+        #locationField,
+        #controls {
+            position: relative;
+            width: 480px;
+        }
+
+        #autocomplete {
+            position: relative;
+            top: 0px;
+            left: 0px;
+            width: 99%;
+        }
+    </style>
+
+    <script>
+        var autocomplete;
+
+        function initAutocomplete() {
+            // Create the autocomplete object, restricting the search to geographical
+            // location types.
+            autocomplete = new google.maps.places.Autocomplete(
+                    /** @type {!HTMLInputElement} */(document.getElementById('id_address')),
+                { types: ['geocode'] });
+
+            // When the user selects an address from the dropdown, populate the address
+            // fields in the form.
+            autocomplete.addListener('place_changed', fillInAddress);
+        }
+
+        function fillInAddress() {
+            // Get the place details from the autocomplete object.
+            var place = autocomplete.getPlace();
+            frame_maps = document.getElementById("iframemaps");
+            frame_maps.setAttribute("src", "https://www.google.com/maps/embed/v1/place?key={{ GOOGLE_MAPS_KEY }}&q=" + place.formatted_address);
+            frame_maps.removeAttribute("hidden");
+        }
+
+    </script>
+    <script src="https://maps.googleapis.com/maps/api/js?key={{ GOOGLE_MAPS_KEY }}&libraries=places&callback=initAutocomplete"
+        async defer>
+    </script> 
+{% endblock %}

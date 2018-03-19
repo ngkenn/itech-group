@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="{% static 'css/base.css' %}">
+    <meta charset="UTF-8">
+</head>
+{% block extra_head %}{% endblock %}
+
+<!-- Navbar -->
+<header>
+    <div class="row Pridi text-center graybackground">
+        <div class="col-xs-1 float-left">
+            <nav><a href="/actifind/"><img src="{% static "images/actifind_logo.png" %}"
+                                                              alt="actifind logo" class="logoSize"/></a></nav>
+        </div>
+    <<div>
+    {% if user.is_authenticated %}
+        <div class="col-xs-1 float-right">
+            <nav class="hover"><a href="/actifind/profile/" style="color: black"><i
+                    class="fa fa-user"></i></a></nav>
+        </div>
+        <div class="col-xs-2 float-right">
+             <nav class="usernameDisplay">Hi, {{ user.username }}</nav>
+        </div>
+
+    {% else %}
+        <div class="col-xs-2 float-right">
+            <nav class="hover"><a href="/actifind/login/" style="color: black"><i
+                    class="fa fa-user"></i></a></nav>
+        </div>
+    {% endif %}
+        </div>
+        
+    </div>
+    </div>
+</header>
+
+
+    <title>
+        {% block title_block %}
+
+        {% endblock %}
+    </title>
+
+<!-- Search bars? -->
+<body>
+<div>
+    {% block body_block %}
+    {% endblock %}
+</div>
+
+<div>
+    <!-- Featured/Pictures -->
+</div>
+
+<div>
+    <!-- Important URL links at the bottom of the page -->
+</div>
+
+</body>
+
+</html>
