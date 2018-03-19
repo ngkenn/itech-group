@@ -6,6 +6,7 @@
     Search Results Page
 {% endblock %}
 
+{% block body_block %}
 <div>
     <h1>Discover Your Day</h1>
        <!-- Previous search bar -->
@@ -14,8 +15,23 @@
         <h2>
             <!-- Maps API + Search results-->
         </h2>
-            Pictures
-        <!-- Pictures of user photos  -->
+
+        <div>
+        {% if activities %}
+      <ul>
+        {% for activity in activities %}
+          <li>
+            <a href="{% url 'show_activity' activity.slug %}">{{ activity.name }}</a>
+          </li>
+{#        {% empty %}#}
+{#        <div class="no-activity">No activity yet!</div>#}
+        {% endfor %}
+        </ul>
+        {% else %}
+          <strong>There are no activities present.</strong>
+        {% endif %}
+      </div>
+      <div>
     </div>
 
 </div>

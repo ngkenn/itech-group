@@ -2,6 +2,8 @@
 {% load staticfiles %}
 {% block extra_head %}
     <link rel="stylesheet" href="{% static 'css/index.css' %}">
+    <link rel="stylesheet" href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+
 {% endblock %}
 
 
@@ -10,15 +12,24 @@
 {% endblock %}
 
 {% block body_block %}
+
+
     <div>
         <h1 class="page-header text-center">Discover Your Day</h1>
         <div>
-            <h2>
-                Search Boxes
-                <!-- search boxes -->
-            </h2>
+            <h5>
+                Search Activities:
+            </h5>
+            <!-- search boxes -->
+            <form class="form-inline my-2 my-lg-0" role="search" method="get" id="searchform" action="{% url 'search' %}">
+
+            <input class="form-control mr-sm-2" type="search" name="q" placeholder="Search" required>
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit"><span class="ion-ios-search-strong"></span></button>
+            </form>
+
+
             <h3>
-                OR
+                Activity:
             </h3>
             <h4>
                 <!-- Create a review -->

@@ -168,9 +168,10 @@ def search(request):
         error_msg = "Please enter search keywords"
         return render(request, 'actifind/index.html', {'error_msg': error_msg})
 
-    activity_list = Activity.objects.filter(Q(title__icontains=q) | Q(body__icontains=q))
-    return render(request, 'actifind/index.html', {'error_msg': error_msg,
-                                               'activity': activity_list})
+
+    # | Q(description__icontains=q)
+    activity_list = Activity.objects.filter(Q(name__icontains=q))
+    return render(request, 'actifind/search_results.html', {'error_msg': error_msg, 'activities': activity_list})
 
 
 
