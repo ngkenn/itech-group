@@ -12,7 +12,10 @@ from django.db.models import Q
 
 
 def index(request):
-    response = render(request, 'actifind/index.html')
+    context_dict = {
+        "activities": Activity.objects.all().order_by('-id')[:5]
+    }
+    response = render(request, 'actifind/index.html', context_dict)
     return response
 
 
