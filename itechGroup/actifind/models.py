@@ -4,11 +4,13 @@ from django.core.validators import MaxValueValidator, MinValueValidator
 from django.db.models import Avg
 from django.contrib.auth.models import User
 
+
 class Tag(models.Model):
     name = models.CharField(max_length=64, unique=True)
 
     def __str__(self):
         return self.name
+
 
 class Activity(models.Model):
     name = models.CharField(max_length=128, unique=True)
@@ -17,7 +19,7 @@ class Activity(models.Model):
     description = models.TextField()
     slug = models.SlugField(unique=True)
     tags = models.ManyToManyField(Tag)
-
+ 
     @property
     def avgRating(self):
         return self.review_set.aggregate(Avg('rating')).values()[0] or "No rating"
@@ -31,6 +33,7 @@ class Activity(models.Model):
 
     def __str__(self):
         return self.name
+
 
 class Picture(models.Model):
     name = models.CharField(max_length=128, unique=True)
