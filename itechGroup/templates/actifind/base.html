@@ -58,8 +58,17 @@
 
 <div>
     <ul>
+         <li> <a href="{% url 'register' %}">Sign Up</a></li>
+        <li> <a href="{% url 'login' %}">Login</a></li>
+        <li> <a href="{% url 'index' %}">Index</a></li>
+
+
+        <!--If Authenticated? -->
          <li> <a href="{% url 'upload_picture' %}">Upload Pic</a></li>
-        <li> <a href="{% url 'register' %}">Sign Up</a></li>
+         <li> <a href="{% url 'add_activity' %}">Add Activity</a></li>
+         <li> <a href="{% url 'profile' %}">View Profile</a></li>
+
+
 
     </ul>
 
