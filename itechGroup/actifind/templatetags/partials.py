@@ -26,3 +26,7 @@ def show_stars(rating, show_rating=False):
         context_dict['rating'] = rating
 
     return context_dict
+
+@register.inclusion_tag('actifind/add_review_modal.html')
+def add_review_modal():
+    return None

@@ -10,3 +10,5 @@ migrations/
 # IDE/text editor generated files
 .idea
 .vscode
+
+media/
