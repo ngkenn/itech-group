@@ -10,8 +10,10 @@ from django.core.urlresolvers import reverse
 from django.conf import settings
 
 def index(request):
-    response = render(request, 'actifind/index.html')
-    return response
+    #response = render(request, 'actifind/index.html')
+    activity_list = Activity.objects.order_by('-name')[:10]
+    context_dict={'activities': activity_list}
+    return render(request, 'actifind/index.html', context_dict)
 
 def show_activity(request, activity_name_slug):
     context_dict = {
@@ -32,13 +34,13 @@ def add_activity(request):
     form = ActivityForm()
     if request.method == 'POST':
         form = ActivityForm(request.POST)
-       
+
         if form.is_valid():
             form.save(commit=True)
             return index(request)
         else:
             print(form.errors)
-    
+
     context_dict = {
         "GOOGLE_MAPS_KEY": settings.GOOGLE_MAPS_KEY,
         "form": form
@@ -152,22 +154,3 @@ def upload_picture(request):    #only if logged in - set as variable in the HTML
     else:
         form = UploadPictureForm()
     return render(request, 'actifind/index.html', {'form': form})
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

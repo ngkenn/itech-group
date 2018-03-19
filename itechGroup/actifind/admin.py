@@ -5,9 +5,12 @@ from actifind.models import UserProfile
 # Register your models here.
 
 
-# class ReviewAdmin(admin.ModelAdmin):
+#class ReviewAdmin(admin.ModelAdmin):
 #     list_display=('title', 'activity', 'url')
-#
-# admin.site.register(Review, ReviewAdmin)
-admin.site.register(UserProfile)
 
+class ActivityAdmin(admin.ModelAdmin):
+    prepopulated_fields = {'slug':('name',)}
+
+admin.site.register(UserProfile)
+admin.site.register(Activity, ActivityAdmin)
+#admin.site.register(Review, ReviewAdmin)

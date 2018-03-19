@@ -55,6 +55,13 @@ class Review(models.Model):
     )
     activity = models.ForeignKey(Activity)
 
+    class Meta:
+        verbose_name_plural = 'Reviews'
+
+#    def save(self, *args, **kwargs):
+#        self.slug = slugify(self.name)
+#        super(Review, self).save(*args, **kwargs)
+
     def __str__(self):
         return self.title
 
