@@ -139,28 +139,9 @@ def populate():
         "Cycling along the Clyde": {
             "activity_type": "Cycling",
             "description": "Wonderful bike ride",
-            "address": "River Clyde, Glasgow, UK",
+            "address": "River Clyde, UK",
             "reviews": cycling_reviews
             },
-        "Cycling along the Clyde": {
-            "activity_type": "Cycling",
-            "description": "Wonderful bike ride",
-            "address": "River Clyde, Glasgow, UK",
-            "reviews": cycling_reviews
-            },
-        "Cycling along the Clyde": {
-            "activity_type": "Cycling",
-            "description": "Wonderful bike ride",
-            "address": "River Clyde, Glasgow, UK",
-            "reviews": cycling_reviews
-            },
-        "Cycling along the Clyde": {
-            "activity_type": "Cycling",
-            "description": "Wonderful bike ride",
-            "address": "River Clyde, Glasgow, UK",
-            "reviews": cycling_reviews
-            },
-
         "Walking around Ben Lomond":{
             "activity_type": "Walking",
             "description": "Great walk",
