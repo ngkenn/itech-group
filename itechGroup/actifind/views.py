@@ -154,10 +154,10 @@ def upload_picture(request):    #only if logged in - set as variable in the HTML
         form = UploadPictureForm(request.POST, request.FILES)
         if form.is_valid():
             form.save()
-            return render(request,'actifind/register.html') #Back to index page? or to confirmation page
+            return render(request,'actifind/upload_picture.html') #Back to index page? or to confirmation page
     else:
         form = UploadPictureForm()
-    return render(request, 'actifind/index.html', {'form': form})
+    return render(request, 'actifind/upload_picture.html', {'form': form}) #Put where the page is
 
 
 def search(request):
