@@ -10,4 +10,7 @@ from actifind.models import UserProfile
 #
 # admin.site.register(Review, ReviewAdmin)
 admin.site.register(UserProfile)
+admin.site.register(Activity)
+admin.site.register(Review)
+admin.site.register(Picture)
 

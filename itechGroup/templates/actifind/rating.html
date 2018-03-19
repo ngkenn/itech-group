@@ -1,0 +1,12 @@
+<!--{% if rating %}
+    {{rating}}
+{% endif %}-->
+{% for i in filled_stars %}
+    <span class="fa fa-star checked"></span>
+{% endfor %}
+{% if half_star %}
+    <span class="fa fa-star-half checked"></span>
+{% endif %}
+{% for i in non_filled_stars %}
+    <span class="fa fa-star-o"></span>
+{% endfor %}

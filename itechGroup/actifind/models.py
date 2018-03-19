@@ -56,6 +56,7 @@ class Review(models.Model):
     rating = models.PositiveSmallIntegerField(
         validators=[MaxValueValidator(5), MinValueValidator(1)]
     )
+    message = models.TextField()
     activity = models.ForeignKey(Activity)
 
     def __str__(self):

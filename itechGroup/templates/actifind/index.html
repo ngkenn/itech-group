@@ -51,7 +51,7 @@
         <div>
         {% if activities %}
       <ul>
-        {% for category in categories %}
+        {% for activity in activities %}
           <li>
             <a href="{% url 'show_activity' activity.slug %}">{{ activity.name }}</a>
           </li>
