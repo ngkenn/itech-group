@@ -3,7 +3,7 @@ from django.template.defaultfilters import slugify
 from django.core.validators import MaxValueValidator, MinValueValidator
 from django.db.models import Avg
 from django.contrib.auth.models import User
-
+from datetime import datetime
 
 class Tag(models.Model):
     name = models.CharField(max_length=64, unique=True)
@@ -37,7 +37,7 @@ class Activity(models.Model):
 
 class Picture(models.Model):
     name = models.CharField(max_length=128, unique=True)
-    description = models.TextField()
+    description = models.TextField(blank=True, default='')
     picture = models.ImageField(upload_to='activity_pictures', blank=True)
     slug = models.SlugField(unique=True)
     activity = models.ForeignKey(Activity)
@@ -51,13 +51,17 @@ class Picture(models.Model):
 
 
 class Review(models.Model):
-    title = models.CharField(max_length=128)
+    title = models.CharField(max_length=128, blank=True, default='Review')
     date = models.DateField()
     rating = models.PositiveSmallIntegerField(
         validators=[MaxValueValidator(5), MinValueValidator(1)]
     )
-    message = models.TextField()
+    message = models.TextField(blank=True, default='')
     activity = models.ForeignKey(Activity)
+
+    def save(self, *args, **kwargs):
+        self.date = datetime.today()
+        super(Review, self).save(*args, **kwargs)
 
     def __str__(self):
         return self.title
