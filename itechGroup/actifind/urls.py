@@ -18,7 +18,7 @@ urlpatterns = [
         views.add_review, name='add_review'),
     url(r'^upload_picture/$', views.upload_picture, name='upload_picture'),
     url(r'^search/$', views.search, name='search'),
-
+    url(r'^add_review/$', views.add_review, name='add_review'),
 
 
 ]   + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

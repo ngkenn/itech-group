@@ -16,13 +16,13 @@ class ActivityForm(forms.ModelForm):
         model = Activity
         fields = ('name','activity_type','description', 'address')
 
-class ReviewForm(forms.ModelForm):
-    title = forms.CharField(max_length=128)
-    date = forms.DateField(widget=forms.HiddenInput())
-    rating = forms.IntegerField()
-    class Meta:
-        model = Review
-        exclude= ('activity',)
+# class ReviewForm(forms.ModelForm):
+#     title = forms.CharField(max_length=128)
+#     date = forms.DateField(widget=forms.HiddenInput())
+#     rating = forms.IntegerField()
+#     class Meta:
+#         model = Review
+#         exclude= ('activity',)
 
 
 class UserForm(forms.ModelForm):

@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect
 from actifind.models import Review
-from actifind.forms import ReviewForm, UserForm, UserProfileForm, ActivityForm, UploadPictureForm
+from actifind.forms import UserForm, UserProfileForm, ActivityForm, UploadPictureForm
 from actifind.models import Activity
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import logout
@@ -95,28 +95,44 @@ def register(request):
                  'profile_form': profile_form,
                     'registered': registered})
 
+def add_review(request):
+    activity_slug = None
+    review = None
 
-def add_review(request, activity_name_slug):
-    try:
-        activity = Activity.objects.get(slug=activity_name_slug)
-    except Activity.DoesNotExist:
-        category = None
-
-    form = ReviewForm()
     if request.method == 'POST':
-        form = PageForm(request.POST)
+        activity_slug = request.POST['activity']
+    if activity_slug:
+        activity = Activity.objects.get(slug=activity_slug) 
+        if activity:
+            rating = int(request.POST['rating'])
+            title = request.POST['title']
+            description = request.POST['description']
+            review = Review(title=title, rating=rating, message=description, activity=activity)
+            review.save()
+    
+    return HttpResponse(review)
 
-        if form.is_valid():
-            if activity:
-                review = form.save(commit=False)
-                review.activity = activity
-                review.save
-                return show_activity(request, activity_name_slug)
-        else:
-            print(form.errors)
+# def add_review(request, activity_name_slug):
+#     try:
+#         activity = Activity.objects.get(slug=activity_name_slug)
+#     except Activity.DoesNotExist:
+#         category = None
 
-    context_dict = {'form':form, 'activity': activity}
-    return render(request, 'actifind/add_review.html', context_dict)
+#     form = ReviewForm()
+#     if request.method == 'POST':
+#         form = PageForm(request.POST)
+
+#         if form.is_valid():
+#             if activity:
+#                 review = form.save(commit=False)
+#                 review.activity = activity
+#                 review.save
+#                 return show_activity(request, activity_name_slug)
+#         else:
+#             print(form.errors)
+
+#     context_dict = {'form':form, 'activity': activity}
+#     return render(request, 'actifind/add_review.html', context_dict)
 
 
 def user_login(request):

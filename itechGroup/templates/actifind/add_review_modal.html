@@ -41,3 +41,9 @@
         </div>
     </div>
 </div>
+
+<!-- Set variables; static javascript doesn't have access to template variables-->
+<script>
+    var postPath = "{% url 'add_review' %}"
+    var csrfToken = "{{ csrf_token }}"
+</script>
