@@ -29,7 +29,7 @@ def show_activity(request, activity_name_slug):
         context_dict['activity'] = activity
 
     except Activity.DoesNotExist:
-        context_dict['category'] = None
+        context_dict['activity'] = None
 
     return render(request, 'actifind/activity.html', context_dict)
 
