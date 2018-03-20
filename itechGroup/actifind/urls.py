@@ -14,9 +14,7 @@ urlpatterns = [
     url(r'^login/$', views.user_login, name='login'),
     url(r'^profile/$', views.profile, name='profile'),
     url(r'^oauth/', include('social_django.urls', namespace='social')),
-    url(r'^activity/(?P<activity_name_slug>[\w\-]+)/add_review/$',
-        views.add_review, name='add_review'),
-    url(r'^upload_picture/$', views.upload_picture, name='upload_picture'),
+    url(r'^activity/(?P<activity_name_slug>[\w\-]+)/upload_picture/$', views.upload_picture, name='upload_picture'),
     url(r'^search/$', views.search, name='search'),
     url(r'^add_review/$', views.add_review, name='add_review'),
 

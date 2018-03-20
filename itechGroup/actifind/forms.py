@@ -46,4 +46,4 @@ class UploadPictureForm(forms.ModelForm):
     picture = forms.ImageField(required=False)
     class Meta:
         model = Picture
-        fields = ('name', 'description', 'picture', 'activity',)
+        fields = ('name', 'description', 'picture', )

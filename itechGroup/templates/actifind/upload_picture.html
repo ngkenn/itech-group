@@ -8,19 +8,21 @@
 {% block body_block %}
 
 <div>
-    <h1>Please click on the submit button to upload your picture</h1>
+    {% if activity %}
+        <h1>Please click on the submit button to upload your picture</h1>
 
-    <form method="post" action="{% url 'upload_picture' %}" enctype="multipart/form-data">
+        <form method="post" action="{% url 'upload_picture' activity.slug %}" enctype="multipart/form-data">
 
-            {% csrf_token %}
+                {% csrf_token %}
 
-            {{ form.as_p }}
+                {{ form.as_p }}
 
-            <input type="submit">Upload</input>
+                <input type="submit">Upload</input>
 
-    </form>
-
-
+        </form>
+    {% else %}
+        <h2>Activity not found</h2>
+    {% endif %}
 </div>
 
 

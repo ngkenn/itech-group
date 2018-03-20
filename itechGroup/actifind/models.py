@@ -36,15 +36,11 @@ class Activity(models.Model):
 
 
 class Picture(models.Model):
-    name = models.CharField(max_length=128, unique=True)
+    name = models.CharField(max_length=128)
     description = models.TextField(blank=True, default='')
     picture = models.ImageField(upload_to='activity_pictures', blank=True)
-    slug = models.SlugField(unique=True)
     activity = models.ForeignKey(Activity)
-
-    def save(self, *args, **kwargs):
-        self.slug = slugify(self.name)
-        super(Picture, self).save(*args, **kwargs)
+    user = models.ForeignKey(User)
 
     def __str__(self):
         return self.name

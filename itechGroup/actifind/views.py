@@ -105,13 +105,15 @@ def add_review(request):
     if request.method == 'POST':
         activity_slug = request.POST['activity']
     if activity_slug:
-        activity = Activity.objects.get(slug=activity_slug) 
-        if activity:
+        try:
+            activity = Activity.objects.get(slug=activity_slug) 
             rating = int(request.POST['rating'])
             title = request.POST['title']
             description = request.POST['description']
             review = Review(title=title, rating=rating, message=description, activity=activity, user=request.user)
             review.save()
+        except Activity.DoesNotExist:
+            review = None
     
     return HttpResponse(review)
 
@@ -168,15 +170,30 @@ def user_logout(request):
 def profile(request):
     return render(request, 'actifind/profile.html/', {})
 
-def upload_picture(request):    #only if logged in - set as variable in the HTML? IF Logged in etc...
-    if request.method == 'POST':
+@login_required
+def upload_picture(request, activity_name_slug):
+    context_dict = {}
+
+    try: 
+        activity = Activity.objects.get(slug=activity_name_slug)
+        context_dict['activity'] = activity
+    except Activity.DoesNotExist:
+        context_dict['activity'] = None
+
+    if activity and request.method == 'POST':
         form = UploadPictureForm(request.POST, request.FILES)
         if form.is_valid():
-            form.save()
-            return render(request,'actifind/upload_picture.html') #Back to index page? or to confirmation page
+            picture = form.save(commit=False)
+            picture.activity = activity
+            picture.user = request.user
+            picture.save()
+            return HttpResponseRedirect(reverse('index'))
     else:
         form = UploadPictureForm()
-    return render(request, 'actifind/upload_picture.html', {'form': form}) #Put where the page is
+    
+    context_dict['form'] = form
+
+    return render(request, 'actifind/upload_picture.html', context_dict) #Put where the page is
 
 
 def search(request):
