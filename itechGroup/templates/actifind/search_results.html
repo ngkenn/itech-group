@@ -1,7 +1,11 @@
 {%  extends 'actifind/base.html' %}
 <!-- Extension of base, which needs a folder to locate? -->
 {% load staticfiles %}
+{% load partials %}
 
+{% block extra_head %}
+ <link rel="stylesheet" href="{% static 'css/index.css' %}">
+{% endblock %}
 {% block title_block %}
     Search Results Page
 {% endblock %}
@@ -20,9 +24,22 @@
         {% if activities %}
       <ul>
         {% for activity in activities %}
-          <li>
-            <a href="{% url 'show_activity' activity.slug %}">{{ activity.name }}</a>
-          </li>
+          <a href="{% url 'show_activity' activity.slug %}" class="col-md card-links">
+                                <div class="card bg-dark text-white">
+                                    {% if activity.picture_set.count > 0%}
+                                        <img class="card-img" src="{{MEDIA_URL}}{{ activity.picture_set.all.0.picture}}">
+                                    {% else %}
+                                    <p class="no-img-text">Sorry, no one has uploaded pictures.</p>
+                                    {% endif %}
+                                    <div class="card-img-overlay">
+                                        <div class="text-bg-gradient">
+                                            <h5 class="card-title">{{ activity.name }}</h5>
+                                            <p class="card-rating">{% show_stars activity.avgRating %}</p>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </a>
 {#        {% empty %}#}
 {#        <div class="no-activity">No activity yet!</div>#}
         {% endfor %}

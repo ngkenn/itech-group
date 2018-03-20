@@ -15,11 +15,13 @@
 {% block body_block %}
     <div class="landing">
         <h1 class="page-header text-center">Discover Your Day</h1>
-        <div class="section" id="search-section">
+      <!--  <div class="section" id="search-section"> -->
+            <div class="section">
             <h5>
                 Search Activities:
             </h5>
             <!-- search boxes -->
+            <div class="search-container">
             <form class="form-inline my-2 my-lg-0" role="search" method="get" id="searchform" action="{% url 'search' %}">
 
                 <input class="form-control mr-sm-2" type="search" name="q" placeholder="Search" required>
@@ -27,6 +29,7 @@
                     <span class="ion-ios-search-strong"></span>
                 </button>
             </form>
+            </div>
         </div>
 
         <div class="section" id="featured-section">

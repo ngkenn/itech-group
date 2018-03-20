@@ -47,3 +47,9 @@ border-radius: 4px;}
     font-size: 12px;
 
 }
+
+.search-container{
+  width: auto;
+  display: block;
+  margin: 0 auto;
+}
