@@ -4,7 +4,7 @@ os.environ.setdefault('DJANGO_SETTINGS_MODULE',
 
 import django
 django.setup()
-from actifind.models import Activity, Review, User
+from actifind.models import Activity, Review, User, Tag
 from dateutil import parser
 from datetime import datetime
 import random
@@ -385,99 +385,141 @@ def populate():
             "activity_type": "Running",
             "description": "Peaceful run",
             "address": "Loch Lomond, United Kingdom",
+            "lat": 56.1557348,
+            "lng": -4.898501,
             "reviews": running_at_loch_lomond_reviews,
-            "user": "superrunner"
+            "user": "superrunner",
+            "tags": ["run", "loch", "peaceful"]
             },
         "Running in Kelvingrove Park": {
             "activity_type": "Running",
             "description": "Nice park run",
             "address": "Kelvingrove Park, Glasgow, United Kingdom",
+            "lat": 55.8693975,
+            "lng": -4.2888771,
             "reviews": Running_in_Kelvingrove_Park_reviews,
-            "user": "jgalvan"
+            "user": "jgalvan",
+            "tags": ["run", "park"]
             },
         "Running up Buchannan Street": {
             "activity_type": "Running",
             "description": "Running in busy shopping street",
             "address": "Buchannan Street, Glasgow, United Kingdom",
+            "lat": 55.8611595,
+            "lng": -4.2560502,
             "reviews": Running_up_Buchannan_Street_reviews,
-            "user": "gooutside"
+            "user": "gooutside",
+            "tags": ["run", "street", "urban"]
             },
         "Running the Royal Mile": {
             "activity_type": "Running",
             "description": "Scenic run",
             "address": "The Royal Mile, Edinburgh, United Kingdom",
+            "lat": 55.9503353,
+            "lng": -3.1884805,
             "reviews": Running_the_Royal_Mile_reviews,
-            "user": "icanruntoo"
+            "user": "icanruntoo",
+            "tags": ["scenic", "run"]
             },
         "Cycling along the Clyde": {
             "activity_type": "Cycling",
             "description": "Wonderful bike ride",
             "address": "River Clyde, UK",
+            "lat": 55.6870094,
+            "lng": -4.6708135,
             "reviews": Cycling_along_the_Clyde_reviews,
-            "user": "jgalvan"
+            "user": "jgalvan",
+            "tags": ["cycling", "bike", "river"]
             },
         "Walking around Ben Lomond":{
             "activity_type": "Walking",
             "description": "Great walk",
             "address": "Ben Lomond, Stirling, UK",
+            "lat": 56.1881163,
+            "lng": -4.6437352,
             "reviews": Walking_around_Ben_Lomond_reviews,
-            "user": "jgalvan"
+            "user": "jgalvan",
+            "tags": ["walk", "lightweight"]
             },
         "Pollok Country Park walk":{
             "activity_type": "Walking",
             "description": "Nice quiet park close to the city",
             "address": "Pollok Country Park, Glasgow, UK",
+            "lat": 55.8267087,
+            "lng": -4.3169829,
             "reviews": Pollok_Country_Park_walk_reviews,
-            "user": "icanruntoo"
+            "user": "icanruntoo",
+            "tags": ["park", "walk", "urban"]
             },
         "Linn Park stroll":{
             "activity_type": "Walking",
             "description": "Lovely for a walk",
             "address": "Linn Park,Glasgow, UK",
+            "lat": 55.8048,
+            "lng": -4.2604887,
             "reviews": Linn_Park_stroll_reviews,
-            "user": "icanruntoo"
+            "user": "icanruntoo",
+            "tags": ["walk", "park", "nice"]
             },
         "Walking around the Necropolis":{
             "activity_type": "Walking",
             "description": "Very interesting historic walk",
             "address": "Glasgow Necropolis, Glasgow, UK",
+            "lat": 55.8626851,
+            "lng": -4.2333095,
             "reviews": Walking_around_the_Necropolis_reviews,
-            "user": "icanruntoo"
+            "user": "icanruntoo",
+            "tags": ["historic", "walk", "necropolis"]
             },
         "Glasgow Green":{
             "activity_type": "Walking",
             "description": "Very nice, People's Palace is also worth a visit",
             "address": "Glasgow Green, Glasgow, UK",
+            "lat": 55.8487031,
+            "lng": -4.2372599,
             "reviews": Glasgow_Green_reviews,
-            "user": "icanruntoo"
+            "user": "icanruntoo",
+            "tags": ["park", "walk"]
             },
         "Bellahouston Park walk":{
             "activity_type": "Walking",
             "description": "Lovely park for a walk",
             "address": "Bellahouston Park, Glasgow, UK",
+            "lat": 55.8442859,
+            "lng": -4.3232917,
             "reviews": Bellahouston_Park_walk_reviews,
-            "user": "jgalvan"
+            "user": "jgalvan",
+            "tags": ["park", "walk"]
             },
         "Walking around Queens Park":{
             "activity_type": "Walking",
             "description": "Nice park, cool glass house and lots to do nearby",
             "address": "Queens Park, Glasgow, UK",
+            "lat": 55.8442809,
+            "lng": -4.3561223,
             "reviews": Walking_around_Queens_Park_reviews,
-            "user": "gooutside"
+            "user": "gooutside",
+            "tags": ["park", "walk", "residential"]
             },
         "Walking around Ben Lomond":{
             "activity_type": "Walking",
             "description": "Great walk",
             "address": "Ben Lomond, Stirling, UK",
+            "lat": 56.1881163,
+            "lng": -4.6437352,
             "reviews": Walking_around_Ben_Lomond_reviews,
-            "user": "icanruntoo"
+            "user": "icanruntoo",
+            "tags": ["walk"]
             },
         "Risking my life in Possil Park":{
             "activity_type": "Walking",
             "description": "Very scary walk, felt endangered",
             "address": "Possil Park, Glasgow, UK",
+            "lat": 55.8827083,
+            "lng": -4.2727411,
             "reviews": Risking_my_life_in_Possil_Park_reviews,
-            "user": "gooutside"
+            "user": "gooutside",
+            "tags": ["park", "walk"]
             }
     }
 
@@ -485,9 +527,13 @@ def populate():
         users[i] = add_user(user['username'], user['email'], user['password'])
 
     for act, act_data in acts.items():
-        a = add_act(act, act_data["activity_type"], act_data["description"], act_data["address"], act_data["user"])
+        a = add_act(act, act_data["activity_type"], act_data["description"], act_data["address"], act_data["user"], act_data["lat"], act_data["lng"])
+        
         for r in act_data["reviews"]:
             add_review(a, r["title"], r["date"], r["rating"], r["user"])
+        
+        for tag in act_data["tags"]:
+            add_tag(a, tag)
 
     for a in Activity.objects.all():
         for r in Review.objects.filter(activity=a):
@@ -499,18 +545,24 @@ def add_user(username, email, password):
     u.save()
     return u
 
+def add_tag(activity, tag_name):
+    tag = Tag.objects.get_or_create(name=tag_name)[0]
+    activity.tags.add(tag)
+
 def add_review(act, title, date, rating, user):
     u = User.objects.get(username=user)
     r = Review.objects.get_or_create(activity=act, title=title, rating=rating, user=u)[0]
     r.save()
     return r
 
-def add_act(name, activity_type, description, address, username):
+def add_act(name, activity_type, description, address, username, lat, lng):
     u = User.objects.get(username=username)
     a = Activity.objects.get_or_create(name=name, user=u)[0]
     a.activity_type = activity_type
     a.description = description
     a.address = address
+    a.lat = lat
+    a.lng = lng
     a.save()
     return a
 

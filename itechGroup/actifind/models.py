@@ -16,6 +16,8 @@ class Activity(models.Model):
     name = models.CharField(max_length=128, unique=True)
     activity_type = models.CharField(max_length=128)
     address = models.CharField(max_length=516)
+    lat = models.FloatField(blank=True, null=True)
+    lng = models.FloatField(blank=True, null=True)
     description = models.TextField()
     slug = models.SlugField(unique=True)
     tags = models.ManyToManyField(Tag)

@@ -47,6 +47,8 @@ def add_activity(request):
         if form.is_valid():
             activity = form.save(commit=False)
             activity.user = request.user
+            activity.lat = float(request.POST['act-lat'])
+            activity.lng = float(request.POST['act-lng'])
             activity.save()
 
             if request.POST['tags-string']:

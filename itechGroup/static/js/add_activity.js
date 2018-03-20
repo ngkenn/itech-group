@@ -16,6 +16,8 @@ function fillInAddress() {
     // Get the place details from the autocomplete object.
     var place = autocomplete.getPlace();
     frame_maps = document.getElementById("iframemaps");
+    $("#act-lat").val(place.geometry.location.lat());
+    $("#act-lng").val(place.geometry.location.lng());
     frame_maps.setAttribute("src", "https://www.google.com/maps/embed/v1/place?key=" + GOOGLE_MAPS_KEY +"&q=" + place.formatted_address);
     frame_maps.removeAttribute("hidden");
 }
