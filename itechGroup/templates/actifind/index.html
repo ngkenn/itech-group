@@ -1,5 +1,6 @@
 {% extends 'actifind/base.html' %} 
 {% load staticfiles %} 
+{% load partials %}
 
 {% block extra_head %}
     <link rel="stylesheet" href="{% static 'css/index.css' %}">
@@ -45,6 +46,7 @@
                                     <div class="card-img-overlay">
                                         <div class="text-bg-gradient">
                                             <h5 class="card-title">{{ activity.name }}</h5>
+                                            <p class="card-rating">{% show_stars activity.avgRating %}</p>
                                         </div>
                                     </div>
                                     
@@ -55,9 +57,6 @@
                 <strong>There are no activities present.</strong>
             {% endif %}
             </div>
-        </div>
-        <div class="section">
-            
         </div>
     </div>
 {% endblock %}
