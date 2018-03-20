@@ -260,21 +260,15 @@ def search(request):
     return render(request, 'actifind/search_results.html', {'error_msg': error_msg, 'activities': activity_list})
 
 
+@login_required
+def show_my_reviews(request):
+    context_dict = {}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    if request.user and request.user.review_set.count() > 0:
+        review_list = request.user.review_set.all().order_by('-id')
+        paginator = Paginator(review_list, 10)
+        page = int(request.GET.get('page') or 1)
+        reviews = paginator.page(page)
+        context_dict['reviews'] = reviews
+    
+    return render(request, 'actifind/show_my_reviews.html', context_dict)

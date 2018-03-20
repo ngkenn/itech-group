@@ -30,4 +30,6 @@ $(document).ready(function() {
         onTagAdd: function(event, tag) { fillTagsInput(t) },
         onTagRemove: function(event, tag) { fillTagsInput(t) }
     });
+
+    $("span.taggle_placeholder").hide();
 });

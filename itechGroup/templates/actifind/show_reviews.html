@@ -2,7 +2,11 @@
 
 {% for review in reviews %}
 <div class="activity-review">
-    <h4>{{ review.title }}</h4>
+    {% if include_links %}
+        <a href="{% url 'show_activity' review.activity.slug %}"><h4>{{ review.title }}</h4></a>
+    {% else %}
+        <h4>{{ review.title }}</h4>
+    {% endif %}
     {% show_stars review.rating %} {{ review.date }} - {{ review.user.username }}
     <p>{{ review.message }}</p>
 </div>

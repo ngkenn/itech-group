@@ -35,5 +35,9 @@ def add_review_modal():
     return None
 
 @register.inclusion_tag('actifind/show_reviews.html')
-def show_reviews(reviews):
-    return {"reviews": reviews }
+def show_reviews(reviews, include_links=False):
+    context_dict = {
+        "reviews": reviews,
+        "include_links": include_links
+    }
+    return context_dict
