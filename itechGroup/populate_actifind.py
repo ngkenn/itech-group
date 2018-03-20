@@ -11,209 +11,459 @@ import random
 
 def populate():
     users = [
-        { 
+        {
             "username": 'testuser',
             "email": 'test@test.com',
             "password": '12344321'
         },
-        { 
+        {
             "username": 'jgalvan',
             "email": 'jgalvan@test.com',
             "password": '12344321'
         },
-        { 
+        {
             "username": 'bestuser',
             "email": 'best@test.com',
             "password": '12344321'
-        }
+        },
+        {
+            "username": 'superrunner',
+            "email": 'runner@test.com',
+            "password": '12344321'
+        },
+        {
+            "username": 'wondersports',
+            "email": 'sporty@test.com',
+            "password": '12344321'
+        },
+        {
+            "username": 'outdoorsman',
+            "email": 'outy@test.com',
+            "password": '12344321'
+        },
+        {
+            "username": 'mrssports',
+            "email": 'mrssports@test.com',
+            "password": '12344321'
+        },
+        {
+            "username": 'icanruntoo',
+            "email": 'icanrun@test.com',
+            "password": '12344321'
+        },
+        {
+            "username": 'gooutside',
+            "email": 'outsdie@test.com',
+            "password": '12344321'
+        },
+        {
+            "username": 'outsidewoman',
+            "email": 'bethere@test.com',
+            "password": '12344321'
+        },
     ]
 
-    running_reviews = [
+
+    running_at_loch_lomond_reviews =[
         {
-            "title": "Running at Loch Lomond",
-            "date":"22/01/2018",
-            "rating":5
+            "title":"Great place for a run, will definitely be back",
+            "date":"20/2/18",
+            "rating":5,
+            "user": "jgalvan"
         },
         {
-            "title": "Running in Kelvingrove Park",
-            "date":"17/03/2018",
-            "rating":4
-        },
-        {
-            "title":"Running up Buchannan Street",
-            "date":"12/3/2018",
-            "rating":2
-        },
-        {
-            "title":"Running the Royal Mile",
-            "date":"21/2/2018",
-            "rating":4
+            "title":"Wonderful",
+            "date":"20/2/18",
+            "rating":5,
+            "user": "superrunner"
         },
     ]
-    cycling_reviews = [
+
+    Running_in_Kelvingrove_Park_reviews =[
         {
-            "title":"Cycling along the Clyde",
-            "date":"1/3/18",
-            "rating":3
+            "title":"beautiful",
+            "date":"20/2/18",
+            "rating":5,
+            "user": "bestuser"
         },
         {
-            "title":"Cycling Glasgow City Centre",
-            "date":"12/3/2018",
-            "rating":2
+            "title":"Wonderful",
+            "date":"20/2/18",
+            "rating":4,
+            "user": "wondersports"
         },
         {
-            "title":"Cycling to Loch Lomond",
-            "date":"12/3/2018",
-            "rating":4
+            "title":"Very good",
+            "date":"20/2/18",
+            "rating":5,
+            "user": "outdoorsman"
         },
         {
-            "title":"Pollok Park cycling",
-            "date":"21/2/2018",
-            "rating":5
-        },
-        {
-            "title":"Firth and Clyde Canal path to Kirkintilloch",
-            "date":"12/3/2018",
-            "rating":5
-        },
-        {
-            "title":"Cathkin Braes Mountain Bike trails",
-            "date":"7/3/2018",
-            "rating":5
-        },
-        {
-            "title":"Clyde and Loch Lomond Cycleway",
-            "date":"8/2/2018",
-            "rating":5
+            "title":"Lovely jubbly",
+            "date":"20/2/18",
+            "rating":5,
+            "user": "mrssports"
         },
     ]
-    walking_reviews = [
+
+    Running_the_Royal_Mile_reviews =[
         {
-            "title":"Ben Lomond easy route",
-            "date":"28/2/18",
-            "rating":4
+            "title":"Awe Inspiring",
+            "date":"20/2/18",
+            "rating":5,
+            "user": "wondersports"
         },
         {
-            "title":"Pollok Country Park",
-            "date":"2/3/18",
-            "rating":5
+            "title":"Wonderful",
+            "date":"20/2/18",
+            "rating":5,
+            "user": "superrunner"
         },
         {
-            "title":"Linn Park",
-            "date":"12/3/18",
-            "rating":5
+            "title":"Makes me feel so Scottish it hurts",
+            "date":"20/2/18",
+            "rating":5,
+            "user": "jgalvan"
         },
         {
-            "title":"The Necropolis",
-            "date":"12/3/18",
-            "rating":5
-        },
-        {
-            "title":"Glasgow Green",
-            "date":"1/2/18",
-            "rating":4
-        },
-        {
-            "title":"Bellahouston Park",
-            "date":"8/2/18",
-            "rating":5
-        },
-        {
-            "title":"Queens Park",
-            "date":"12/2/18",
-            "rating":5
-        },
-        {
-            "title":"Possil Park",
-            "date":"28/2/18",
-            "rating":1
+            "title":"Wonderful",
+            "date":"20/2/18",
+            "rating":5,
+            "user": "mrssports"
         },
     ]
+
+    Running_up_Buchannan_Street_reviews =[
+        {
+            "title":"Bit too busy for me",
+            "date":"20/2/18",
+            "rating":2,
+            "user": "jgalvan"
+        },
+        {
+            "title":"Some strange people around",
+            "date":"20/2/18",
+            "rating":3,
+            "user": "superrunner"
+        },
+        {
+            "title":"Better than Edinburgh",
+            "date":"20/2/18",
+            "rating":4,
+            "user": "mrssports"
+        },
+        {
+            "title":"I like running",
+            "date":"20/2/18",
+            "rating":3,
+            "user": "icanruntoo"
+        },
+    ]
+    Cycling_along_the_Clyde_reviews =[
+        {
+            "title":"beautiful",
+            "date":"20/2/18",
+            "rating":5,
+            "user": "jgalvan"
+        },
+        {
+            "title":"Wonderful",
+            "date":"20/2/18",
+            "rating":5,
+            "user": "wondersports"
+        },
+        {
+            "title":"Just get outside dudez n dudettez",
+            "date":"20/2/18",
+            "rating":5,
+            "user": "gooutside"
+        },
+        {
+            "title":"Incredible",
+            "date":"20/2/18",
+            "rating":5,
+            "user": "superrunner"
+        },
+    ]
+    Walking_around_Ben_Lomond_reviews =[
+        {
+            "title":"Mountains hmmm nice",
+            "date":"20/2/18",
+            "rating":5,
+            "user": "jgalvan"
+        },
+        {
+            "title":"Wonderful",
+            "date":"20/2/18",
+            "rating":5,
+            "user": "superrunner"
+        },
+    ]
+    Pollok_Country_Park_walk_reviews =[
+        {
+            "title":"Fresh air at last",
+            "date":"20/2/18",
+            "rating":5,
+            "user": "outdoorsman"
+        },
+        {
+            "title":"Superdooper",
+            "date":"20/2/18",
+            "rating":4,
+            "user": "superrunner"
+        },
+    ]
+    Linn_Park_stroll_reviews =[
+        {
+            "title":"Quite nice",
+            "date":"20/2/18",
+            "rating":4,
+            "user": "jgalvan"
+        },
+        {
+            "title":"How lovely",
+            "date":"20/2/18",
+            "rating":5,
+            "user": "outsidewoman"
+        },
+    ]
+    Walking_around_the_Necropolis_reviews =[
+        {
+            "title":"How old and nice",
+            "date":"20/2/18",
+            "rating":5,
+            "user": "jgalvan"
+        },
+        {
+            "title":"So historic",
+            "date":"20/2/18",
+            "rating":5,
+            "user": "superrunner"
+        },
+        {
+            "title":"Inspirational",
+            "date":"20/2/18",
+            "rating":5,
+            "user": "icanruntoo"
+        },
+        {
+            "title":"Good when the weather is nice",
+            "date":"20/2/18",
+            "rating":4,
+            "user": "outsidewoman"
+        },
+        {
+            "title":"Too urban for me",
+            "date":"20/2/18",
+            "rating":3,
+            "user": "gooutside"
+        },
+        {
+            "title":"Old as you get round here",
+            "date":"20/2/18",
+            "rating":5,
+            "user": "wondersports"
+        }
+    ]
+    Glasgow_Green_reviews =[
+        {
+            "title":"Wonderful in the sun",
+            "date":"20/2/18",
+            "rating":5,
+            "user": "wondersports"
+        },
+        {
+            "title":"Lovely",
+            "date":"20/2/18",
+            "rating":5,
+            "user": "superrunner"
+        },
+    ]
+
+    Bellahouston_Park_walk_reviews =[
+        {
+            "title":"Nice",
+            "date":"20/2/18",
+            "rating":4,
+            "user": "jgalvan"
+        },
+        {
+            "title":"Cool",
+            "date":"20/2/18",
+            "rating":3,
+            "user": "superrunner"
+        },
+    ]
+
+    Glasgow_Green_reviews =[
+        {
+            "title":"Wonderful in the sun",
+            "date":"20/2/18",
+            "rating":5,
+            "user": "mrssports"
+        },
+        {
+            "title":"Lovely",
+            "date":"20/2/18",
+            "rating":3,
+            "user": "superrunner"
+        },
+        {
+            "title":"Nice for a chilled day",
+            "date":"20/2/18",
+            "rating":4,
+            "user": "icanruntoo"
+        },
+        {
+            "title":"Lovely",
+            "date":"20/2/18",
+            "rating":5,
+            "user": "gooutside"
+        },
+    ]
+
+    Walking_around_Queens_Park_reviews =[
+        {
+            "title":"Number 1 in the southside",
+            "date":"20/2/18",
+            "rating":5,
+            "user": "jgalvan"
+        },
+        {
+            "title":"Really nice",
+            "date":"20/2/18",
+            "rating":5,
+            "user": "superrunner"
+        },
+    ]
+
+    Walking_around_Ben_Lomond_reviews =[
+        {
+            "title":"Amazing day out",
+            "date":"20/2/18",
+            "rating":5,
+            "user": "jgalvan"
+        },
+        {
+            "title":"Lovely",
+            "date":"20/2/18",
+            "rating":5,
+            "user": "superrunner"
+        },
+        {
+            "title":"So authentic",
+            "date":"20/2/18",
+            "rating":5,
+            "user": "icanruntoo"
+        },
+        {
+            "title":"Lovely",
+            "date":"20/2/18",
+            "rating":5,
+            "user": "gooutside"
+        },
+    ]
+
+    Risking_my_life_in_Possil_Park_reviews =[
+        {
+            "title":"Traumatic experience, I was almost killed by a ned",
+            "date":"20/2/18",
+            "rating":1,
+            "user": "jgalvan"
+        },
+        {
+            "title":"Terrible, chased a guy to try and give him back his wallet for an hour and he called the police saying I was trying to kill him",
+            "date":"20/2/18",
+            "rating":1,
+            "user": "superrunner"
+        },
+    ]
+
 
     acts = {
         "Running at Loch Lomond": {
             "activity_type": "Running",
             "description": "Peaceful run",
             "address": "Loch Lomond, United Kingdom",
-            "reviews": running_reviews
+            "reviews": running_at_loch_lomond_reviews
             },
         "Running in Kelvingrove Park": {
             "activity_type": "Running",
             "description": "Nice park run",
             "address": "Kelvingrove Park, Glasgow, United Kingdom",
-            "reviews": running_reviews
+            "reviews": Running_in_Kelvingrove_Park_reviews
             },
         "Running up Buchannan Street": {
             "activity_type": "Running",
             "description": "Running in busy shopping street",
             "address": "Buchannan Street, Glasgow, United Kingdom",
-            "reviews": running_reviews
+            "reviews": Running_up_Buchannan_Street_reviews
             },
         "Running the Royal Mile": {
             "activity_type": "Running",
             "description": "Scenic run",
             "address": "The Royal Mile, Edinburgh, United Kingdom",
-            "reviews": running_reviews
+            "reviews": Running_the_Royal_Mile_reviews
             },
         "Cycling along the Clyde": {
             "activity_type": "Cycling",
             "description": "Wonderful bike ride",
             "address": "River Clyde, UK",
-            "reviews": cycling_reviews
+            "reviews": Cycling_along_the_Clyde_reviews
             },
         "Walking around Ben Lomond":{
             "activity_type": "Walking",
             "description": "Great walk",
             "address": "Ben Lomond, Stirling, UK",
-            "reviews": walking_reviews
+            "reviews": Walking_around_Ben_Lomond_reviews
             },
         "Pollok Country Park walk":{
             "activity_type": "Walking",
             "description": "Nice quiet park close to the city",
             "address": "Pollok Country Park, Glasgow, UK",
-            "reviews": walking_reviews
+            "reviews": Pollok_Country_Park_walk_reviews
             },
         "Linn Park stroll":{
             "activity_type": "Walking",
             "description": "Lovely for a walk",
             "address": "Linn Park,Glasgow, UK",
-            "reviews": walking_reviews
+            "reviews": Linn_Park_stroll_reviews
             },
         "Walking around the Necropolis":{
             "activity_type": "Walking",
             "description": "Very interesting historic walk",
             "address": "Glasgow Necropolis, Glasgow, UK",
-            "reviews": walking_reviews
+            "reviews": Walking_around_the_Necropolis_reviews
             },
         "Glasgow Green":{
             "activity_type": "Walking",
             "description": "Very nice, People's Palace is also worth a visit",
             "address": "Glasgow Green, Glasgow, UK",
-            "reviews": walking_reviews
+            "reviews": Glasgow_Green_reviews
             },
         "Bellahouston Park walk":{
             "activity_type": "Walking",
             "description": "Lovely park for a walk",
             "address": "Bellahouston Park, Glasgow, UK",
-            "reviews": walking_reviews
+            "reviews": Bellahouston_Park_walk_reviews
             },
         "Walking around Queens Park":{
             "activity_type": "Walking",
             "description": "Nice park, cool glass house and lots to do nearby",
             "address": "Queens Park, Glasgow, UK",
-            "reviews": walking_reviews
+            "reviews": Walking_around_Queens_Park_reviews
             },
         "Walking around Ben Lomond":{
             "activity_type": "Walking",
             "description": "Great walk",
             "address": "Ben Lomond, Stirling, UK",
-            "reviews": walking_reviews
+            "reviews": Walking_around_Ben_Lomond_reviews
             },
         "Risking my life in Possil Park":{
             "activity_type": "Walking",
             "description": "Very scary walk, felt endangered",
             "address": "Possil Park, Glasgow, UK",
-            "reviews": walking_reviews
+            "reviews": Risking_my_life_in_Possil_Park_reviews
             }
     }
 
@@ -236,7 +486,7 @@ def add_user(username, email, password):
     return u
 
 def add_review(act, title, date, rating, user):
-    r = Review.objects.get_or_create(activity=act, title=title, date=datetime.today(), rating=rating, user=user)[0]
+    r = Review.objects.get_or_create(activity=act, title=title, rating=rating, user=user)[0]
     r.save()
     return r
 
