@@ -209,8 +209,11 @@ def search(request):
 
 
     # | Q(description__icontains=q)
-    activity_list = Activity.objects.filter(Q(name__icontains=q))
+    activity_list = Activity.objects.filter(Q(name__icontains=q) | Q(description__icontains=q) | Q(address__icontains=q) | Q(activity_type__icontains=q))
     return render(request, 'actifind/search_results.html', {'error_msg': error_msg, 'activities': activity_list})
+
+
+
 
 
 
