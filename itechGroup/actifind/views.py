@@ -1,11 +1,11 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponse, HttpResponseRedirect
-from actifind.models import Review
+from actifind.models import Review, UserProfile
 from actifind.forms import UserForm, UserProfileForm, ActivityForm, UploadPictureForm
 from actifind.models import Activity
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth import logout
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import logout, authenticate, login
+from django.contrib.auth.models import User
 from django.core.urlresolvers import reverse
 from django.conf import settings
 from django.db.models import Q
@@ -193,8 +193,25 @@ def user_logout(request):
 
 
 @login_required
-def profile(request):
-    return render(request, 'actifind/profile.html/', {})
+def profile(request, username):
+    try:
+        user = User.objects.get(username=username)
+    except User.DoesNotExist:
+        return redirect('index')
+
+    userprofile = UserProfile.objects.get_or_create(user=user)[0]
+    form = UserProfileForm({'picture': userprofile.picture, })
+
+    if request.method == 'POST':
+        form = UserProfileForm(request.POST, request.FILES, instance=userprofile)
+        if form.is_valid():
+            form.save(commit=True)
+            return redirect('profile', user.username)
+        else:
+            print(form.errors)
+
+    return render(request, 'actifind/profile.html', {'userprofile': userprofile, 'selecteduser': user, 'form': form})
+
 
 @login_required
 def upload_picture(request, activity_name_slug):

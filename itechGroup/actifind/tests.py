@@ -65,7 +65,7 @@ class ModelTest(TestCase):
         return Review.objects.create(title=title, rating=rating, message=message,activity_id=activity_id, user_id=user_id)
 
     def test_review_creation(self):
-        r=self.create_testReview()
+        r = self.create_testReview()
 
         self.assertTrue(isinstance(r, Review))
         self.assertEqual(r.__str__(), r.title)
