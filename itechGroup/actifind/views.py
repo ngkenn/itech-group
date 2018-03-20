@@ -142,6 +142,24 @@ def add_review(request):
 #     context_dict = {'form':form, 'activity': activity}
 #     return render(request, 'actifind/add_review.html', context_dict)
 
+def show_pictures(request, activity_name_slug):
+    context_dict = {}
+
+    try: 
+        activity = Activity.objects.get(slug=activity_name_slug)
+        context_dict['activity'] = activity
+    except Activity.DoesNotExist:
+        context_dict['activity'] = None
+
+    if context_dict['activity'] and request.method == 'GET':
+        pictures = activity.picture_set.all()
+        if pictures.all().count() > 0:
+            first_picture = pictures[0]
+            context_dict["first_picture"] = first_picture
+            context_dict["pictures"] = pictures[1:]
+    
+    return render(request, 'actifind/show_pictures.html', context_dict)
+
 
 def user_login(request):
     if request.method == 'POST':

@@ -44,7 +44,7 @@
                     <img src="{{ MEDIA_URL }}{{ activity.picture_set.all.0.picture }}" class="img-fluid image-activity" alt="">
                 <div class="picture-area-container">    
                 </div>
-                <a class="all-pictures-link" href="#"><span class="fa fa-camera-retro"></span> See all pictures</a>
+                <a class="all-pictures-link" href="{% url 'show_pictures' activity.slug %}"><span class="fa fa-camera-retro"></span> See all pictures ({{activity.picture_set.count}})</a>
               {% else %}
                 <p class="no-pictures">Be the first to add a picture!</p>
               {% endif %}

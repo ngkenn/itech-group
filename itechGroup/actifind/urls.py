@@ -17,6 +17,7 @@ urlpatterns = [
     url(r'^activity/(?P<activity_name_slug>[\w\-]+)/upload_picture/$', views.upload_picture, name='upload_picture'),
     url(r'^search/$', views.search, name='search'),
     url(r'^add_review/$', views.add_review, name='add_review'),
+    url(r'^activity/(?P<activity_name_slug>[\w\-]+)/show_pictures/$', views.show_pictures, name='show_pictures'),
 
 
 ]   + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
