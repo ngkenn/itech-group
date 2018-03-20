@@ -4,11 +4,30 @@ os.environ.setdefault('DJANGO_SETTINGS_MODULE',
 
 import django
 django.setup()
-from actifind.models import Activity, Review
+from actifind.models import Activity, Review, User
 from dateutil import parser
 from datetime import datetime
+import random
 
 def populate():
+    users = [
+        { 
+            "username": 'testuser',
+            "email": 'test@test.com',
+            "password": '12344321'
+        },
+        { 
+            "username": 'jgalvan',
+            "email": 'jgalvan@test.com',
+            "password": '12344321'
+        },
+        { 
+            "username": 'bestuser',
+            "email": 'best@test.com',
+            "password": '12344321'
+        }
+    ]
+
     running_reviews = [
         {
             "title": "Running at Loch Lomond",
@@ -198,22 +217,31 @@ def populate():
             }
     }
 
+    for i, user in enumerate(users):
+        users[i] = add_user(user['username'], user['email'], user['password'])
+
     for act, act_data in acts.items():
-        a = add_act(act, act_data["activity_type"], act_data["description"], act_data["address"])
+        a = add_act(act, act_data["activity_type"], act_data["description"], act_data["address"], random.choice(users))
         for r in act_data["reviews"]:
-            add_review(a, r["title"], r["date"], r["rating"])
+            add_review(a, r["title"], r["date"], r["rating"], random.choice(users))
 
     for a in Activity.objects.all():
         for r in Review.objects.filter(activity=a):
             print("- {0} - {1}".format(str(a), str(r)))
 
-def add_review(act, title, date, rating):
-    r = Review.objects.get_or_create(activity=act, title=title, date=datetime.today(), rating=rating)[0]
+def add_user(username, email, password):
+    u = User.objects.get_or_create(username=username, email=email)[0]
+    u.set_password(password)
+    u.save()
+    return u
+
+def add_review(act, title, date, rating, user):
+    r = Review.objects.get_or_create(activity=act, title=title, date=datetime.today(), rating=rating, user=user)[0]
     r.save()
     return r
 
-def add_act(name, activity_type, description, address):
-    a = Activity.objects.get_or_create(name=name)[0]
+def add_act(name, activity_type, description, address, user):
+    a = Activity.objects.get_or_create(name=name, user=user)[0]
     a.activity_type = activity_type
     a.description = description
     a.address = address
