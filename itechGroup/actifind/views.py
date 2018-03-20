@@ -9,11 +9,12 @@ from django.contrib.auth import authenticate, login
 from django.core.urlresolvers import reverse
 from django.conf import settings
 from django.db.models import Q
+from django.db.models import Avg
 
 
 def index(request):
     context_dict = {
-        "activities": Activity.objects.all().order_by('-id')[:5]
+        "activities": Activity.objects.all().annotate(avg=Avg('review__rating')).order_by('-avg')[:3]
     }
     response = render(request, 'actifind/index.html', context_dict)
     return response

@@ -1,66 +1,63 @@
-{% extends 'actifind/base.html' %}
-{% load staticfiles %}
+{% extends 'actifind/base.html' %} 
+{% load staticfiles %} 
+
 {% block extra_head %}
     <link rel="stylesheet" href="{% static 'css/index.css' %}">
-    <link rel="stylesheet" href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+    <link rel="stylesheet" href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css"> 
+{% endblock %} 
 
-{% endblock %}
+{% block title_block %} 
+    ActiFind - Discover your day
+{% endblock %} 
 
-
-{% block title_block %}
-
-{% endblock %}
 
 {% block body_block %}
-
-
-    <div>
+    <div class="landing">
         <h1 class="page-header text-center">Discover Your Day</h1>
-        <div>
+        <div class="section" id="search-section">
             <h5>
                 Search Activities:
             </h5>
             <!-- search boxes -->
             <form class="form-inline my-2 my-lg-0" role="search" method="get" id="searchform" action="{% url 'search' %}">
 
-            <input class="form-control mr-sm-2" type="search" name="q" placeholder="Search" required>
-            <button class="btn btn-outline-success my-2 my-sm-0" type="submit"><span class="ion-ios-search-strong"></span></button>
+                <input class="form-control mr-sm-2" type="search" name="q" placeholder="Search" required>
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">
+                    <span class="ion-ios-search-strong"></span>
+                </button>
             </form>
-
-
-            <h3>
-                Activity:
-            </h3>
-            <h4>
-                <!-- Create a review -->
-            </h4>
         </div>
 
-        <div>
+        <div class="section" id="featured-section">
             <h5>
                 Featured
             </h5>
+            <div class="row" id="featured-cards" class="col-12">
+            {% if activities %}
+                {% for activity in activities %}
+                        <a href="{% url 'show_activity' activity.slug %}" class="col-md card-links">
+                                <div class="card bg-dark text-white">
+                                    {% if activity.picture_set.count > 0%}
+                                        <img class="card-img" src="{{MEDIA_URL}}{{ activity.picture_set.all.0.picture}}">
+                                    {% else %}
+                                    <p class="no-img-text">Sorry, no one has uploaded pictures.</p>
+                                    {% endif %}
+                                    <div class="card-img-overlay">
+                                        <div class="text-bg-gradient">
+                                            <h5 class="card-title">{{ activity.name }}</h5>
+                                        </div>
+                                    </div>
+                                    
+                                </div>
+                            </a>
+                    {% endfor %}
+            {% else %}
+                <strong>There are no activities present.</strong>
+            {% endif %}
+            </div>
         </div>
-        <div>
-        {% if activities %}
-      <ul>
-        {% for activity in activities %}
-          <li>
-            <a href="{% url 'show_activity' activity.slug %}">{{ activity.name }}</a>
-          </li>
-        {% endfor %}
-      </ul>
-        {% else %}
-          <strong>There are no activities present.</strong>
-        {% endif %}
-      </div>
-      <div>
-
-
-
-
-            <!-- Pictures of user photos  -->
-      </div>
-
+        <div class="section">
+            
+        </div>
     </div>
 {% endblock %}
