@@ -149,6 +149,7 @@ def user_logout(request):
 def profile(request):
     return render(request, 'actifind/profile.html/', {})
 
+
 def upload_picture(request):    #only if logged in - set as variable in the HTML? IF Logged in etc...
     if request.method == 'POST':
         form = UploadPictureForm(request.POST, request.FILES)
@@ -170,8 +171,11 @@ def search(request):
 
 
     # | Q(description__icontains=q)
-    activity_list = Activity.objects.filter(Q(name__icontains=q))
+    activity_list = Activity.objects.filter(Q(name__icontains=q) | Q(description__icontains=q) | Q(address__icontains=q) | Q(activity_type__icontains=q))
     return render(request, 'actifind/search_results.html', {'error_msg': error_msg, 'activities': activity_list})
+
+
+
 
 
 
