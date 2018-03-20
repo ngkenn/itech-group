@@ -46,7 +46,7 @@
                 </div>
                 <a class="all-pictures-link" href="{% url 'show_pictures' activity.slug %}"><span class="fa fa-camera-retro"></span> See all pictures ({{activity.picture_set.count}})</a>
               {% else %}
-                <p class="no-pictures">Be the first to add a picture!</p>
+                <p class="no-pictures">Sorry, no one has uploaded pictures.</br> Be the first to add a picture!</p>
               {% endif %}
             </div>
             

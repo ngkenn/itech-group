@@ -95,3 +95,11 @@ button#addReviewBtn {
     position: absolute;
     left: 32%;
 }
+
+.no-pictures {
+    width: 100%;
+    padding: 30%;
+    text-align: center;
+    background: linear-gradient(#00000094, #000000);
+    color: white;
+}
