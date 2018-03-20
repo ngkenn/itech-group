@@ -19,6 +19,7 @@ class Activity(models.Model):
     description = models.TextField()
     slug = models.SlugField(unique=True)
     tags = models.ManyToManyField(Tag)
+    user = models.ForeignKey(User)
 
     @property
     def avgRating(self):

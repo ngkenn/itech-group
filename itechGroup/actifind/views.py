@@ -34,14 +34,16 @@ def show_activity(request, activity_name_slug):
 
     return render(request, 'actifind/activity.html', context_dict)
 
-
+@login_required
 def add_activity(request):
     form = ActivityForm()
     if request.method == 'POST':
         form = ActivityForm(request.POST)
        
         if form.is_valid():
-            form.save(commit=True)
+            activity = form.save(commit=False)
+            activity.user = request.user
+            activity.save()
             return index(request)
         else:
             print(form.errors)
