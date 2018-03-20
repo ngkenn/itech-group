@@ -72,7 +72,7 @@ def register(request):
             user.save()
 
             profile = profile_form.save(commit=False)
-            profile.user = request.user
+            profile.user = user
 
             if 'picture' in request.FILES:
                 profile.picture = request.FILES['picture']
@@ -81,7 +81,9 @@ def register(request):
                 profile.save()
 
             # Update variable to show registration successful
-                registered = True
+            registered = True
+            login(request, user, backend='django.contrib.auth.backends.ModelBackend')
+            return HttpResponseRedirect(reverse('index'))
         else:
             print(user_form.errors, profile_form.errors)
     else:
