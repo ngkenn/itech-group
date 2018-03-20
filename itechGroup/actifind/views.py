@@ -1,8 +1,7 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse, HttpResponseRedirect
-from actifind.models import Review, UserProfile
+from actifind.models import Review, UserProfile, Tag, Activity
 from actifind.forms import UserForm, UserProfileForm, ActivityForm, UploadPictureForm
-from actifind.models import Activity
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import logout, authenticate, login
 from django.contrib.auth.models import User
@@ -44,11 +43,19 @@ def add_activity(request):
     form = ActivityForm()
     if request.method == 'POST':
         form = ActivityForm(request.POST)
-       
+
         if form.is_valid():
             activity = form.save(commit=False)
             activity.user = request.user
             activity.save()
+
+            if request.POST['tags-string']:
+                tags = request.POST['tags-string'].split(",")
+
+                for tag_name in tags:
+                    tag = Tag.objects.get_or_create(name=tag_name)[0]
+                    activity.tags.add(tag)
+            
             return index(request)
         else:
             print(form.errors)

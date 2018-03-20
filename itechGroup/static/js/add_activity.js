@@ -19,3 +19,15 @@ function fillInAddress() {
     frame_maps.setAttribute("src", "https://www.google.com/maps/embed/v1/place?key=" + GOOGLE_MAPS_KEY +"&q=" + place.formatted_address);
     frame_maps.removeAttribute("hidden");
 }
+
+function fillTagsInput(taggle){
+    var tags = taggle.getTagValues().toString();
+    $("#tags-string").val(tags);
+}
+
+$(document).ready(function() {
+    t = new Taggle('tags-field', {
+        onTagAdd: function(event, tag) { fillTagsInput(t) },
+        onTagRemove: function(event, tag) { fillTagsInput(t) }
+    });
+});
