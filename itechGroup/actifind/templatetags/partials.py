@@ -33,3 +33,7 @@ def show_stars(rating, show_rating=False):
 @register.inclusion_tag('actifind/add_review_modal.html')
 def add_review_modal():
     return None
+
+@register.inclusion_tag('actifind/show_reviews.html')
+def show_reviews(reviews):
+    return {"reviews": reviews }

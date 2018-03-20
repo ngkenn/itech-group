@@ -10,7 +10,7 @@ from django.core.urlresolvers import reverse
 from django.conf import settings
 from django.db.models import Q
 from django.db.models import Avg
-
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 def index(request):
     context_dict = {
@@ -27,7 +27,12 @@ def show_activity(request, activity_name_slug):
 
     try:
         activity = Activity.objects.get(slug=activity_name_slug)
+        review_list = activity.review_set.all().order_by('-id')
+        paginator = Paginator(review_list, 4)
+        page = int(request.GET.get('page') or 1)
+        reviews = paginator.page(page)
         context_dict['activity'] = activity
+        context_dict['reviews'] = reviews
 
     except Activity.DoesNotExist:
         context_dict['activity'] = None

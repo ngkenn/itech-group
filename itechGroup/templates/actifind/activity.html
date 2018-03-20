@@ -54,16 +54,8 @@
               {% add_review_modal %}
             {% endif %}
             <div class="activity-review-group">
-              {% if activity.review_set.count > 0 %}
-                  {% for review in activity.review_set.all %}
-                    <div class="activity-review">
-                      <h4>{{ review.title }}</h4>
-                      {% show_stars review.rating %}
-                      {{ review.date }}  - {{ review.user.username }}
-                      <p>{{ review.message }}</p>
-                    </div>
-                    
-                  {% endfor %}
+              {% if reviews.count > 0 %}
+                  {% show_reviews reviews %}
               {% else %}
                 <p>Be the first to leave a review!</p>
               {% endif %}
