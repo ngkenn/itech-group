@@ -58,6 +58,7 @@ class Review(models.Model):
     )
     message = models.TextField(blank=True, default='')
     activity = models.ForeignKey(Activity)
+    user = models.ForeignKey(User)
 
     def save(self, *args, **kwargs):
         self.date = datetime.today()

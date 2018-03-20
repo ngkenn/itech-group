@@ -97,6 +97,7 @@ def register(request):
                  'profile_form': profile_form,
                     'registered': registered})
 
+@login_required
 def add_review(request):
     activity_slug = None
     review = None
@@ -109,7 +110,7 @@ def add_review(request):
             rating = int(request.POST['rating'])
             title = request.POST['title']
             description = request.POST['description']
-            review = Review(title=title, rating=rating, message=description, activity=activity)
+            review = Review(title=title, rating=rating, message=description, activity=activity, user=request.user)
             review.save()
     
     return HttpResponse(review)

@@ -33,8 +33,9 @@
                 {% endfor %}
               </p> 
             {% endif %}
-
+            {%  if user.is_authenticated %}
             <a class="btn btn-outline-info" href="{% url 'upload_picture' %}"><span class="fa fa-plus"></span>Add picture</a>
+            {% endif %}
         </div>
 
         <div class="col-md-8 col-12">
@@ -49,15 +50,16 @@
               {% endif %}
             </div>
             
-            {% add_review_modal %}
-
+            {% if user.is_authenticated %}
+              {% add_review_modal %}
+            {% endif %}
             <div class="activity-review-group">
               {% if activity.review_set.count > 0 %}
                   {% for review in activity.review_set.all %}
                     <div class="activity-review">
                       <h4>{{ review.title }}</h4>
                       {% show_stars review.rating %}
-                      {{ review.date }}
+                      {{ review.date }}  - {{ review.user.username }}
                       <p>{{ review.message }}</p>
                     </div>
                     
