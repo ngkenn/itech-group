@@ -44,12 +44,28 @@ class ActivityTest(TestCase):
 class LoginTest(TestCase):
 
     def setUp(self):
+        #Create a user
         user = User.objects.create_user(username='tester')
         user.set_password('er123')
         user.save()
 
     def test_log(self):
+        #test to see if it is possible to log in
         c = Client()
         logged_in = c.login(username='tester', password='er123')
         self.assertTrue(logged_in)
 
+
+
+class ModelTest(TestCase):
+
+    #Unit test for review model
+
+    def create_Review(self, title='Glasgow', rating='3', message='Very busy', activity_id='6', user_id='8'):
+        return Review.objects.create(title=title, rating=rating, message=message,activity_id=activity_id, user_id=user_id)
+
+    def test_review_creation(self):
+        r=self.create_testReview()
+
+        self.assertTrue(isinstance(r, Review))
+        self.assertEqual(r.__str__(), r.title)
