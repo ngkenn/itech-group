@@ -63,6 +63,9 @@ class Review(models.Model):
         self.date = datetime.today()
         super(Review, self).save(*args, **kwargs)
 
+    class Meta:
+        verbose_name_plural = 'Reviews'
+
     def __str__(self):
         return self.title
 
