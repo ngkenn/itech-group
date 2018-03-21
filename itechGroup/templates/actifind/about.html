@@ -1,0 +1,70 @@
+{% extends 'actifind/base.html' %}
+{% load staticfiles %}
+{% load partials %}
+
+{% block extra_head %}
+    <link rel="stylesheet" href="{% static 'css/index.css' %}">
+    <link rel="stylesheet" href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+{% endblock %}
+
+{% block title_block %}
+    ActiFind - Discover your day
+{% endblock %}
+
+
+{% block body_block %}
+    <div class="landing">
+        <h1 class="page-header text-center">Discover Your Day</h1>
+      <!--  <div class="section" id="search-section"> -->
+            <div class="section">
+            <h5>
+                Search Activities:
+            </h5>
+            <!-- search boxes -->
+            <div class="search-container">
+            <form class="form-inline my-2 my-lg-0" role="search" method="get" id="searchform" action="{% url 'search' %}">
+
+                <input class="form-control mr-sm-2" type="search" name="q" placeholder="Search" required>
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">
+                    <span class="ion-ios-search-strong"></span>
+                </button>
+            </form>
+            </div>
+        </div>
+
+        <div class="section" id="featured-section">
+            <h5>
+                About Actifind
+            </h5>
+            <div >
+              <p style="color:White;">
+                  Do you like exercising outdoors, crave to spend time outside or are<br>
+                  you looking to get a little more fresh air?<Strong>Actifind</Strong><br>
+                  can help you find your next favorite place to spend time outside.<br>
+                  Whether your passion is photography, climbing, or hiking, you can look <br>
+                  for outdoor activities within the application that will suit what you seek.<br>
+              </p>
+              <p style="color:White;">
+                  Search for great spots to go out near you, activities you can do over <br>
+                  weekend or contribute to the community by providing your own suggestions.<br>
+                  Go into an activity’s page and you will see reviews by other users, <br>
+                  a map to locate where it is, and pictures that other users have contributed<br>
+                  to the site.<br>
+              </p>
+              <p style="color:White;">
+                Are you a beginner hiker that wants a to give it a shot to a not so difficult trek?<br>
+                Find close places you can explore by searching for tags. Are you curious to see if <br>
+                a place is as good as it seems? Look it up and read what other people think.<br>
+              </p>
+              <p style="color:White;">
+                 On the other hand, if you are an experienced climber that knows every mountain<br>
+                 around, you can contribute by adding new activities and zones,<br>
+                adding pictures and reviews, so that you can encourage more people to get to<br>
+                love the places you love. You can later go back and see what people think of that<br>
+                spot by reading their reviews
+
+              </p>
+            </div>
+        </div>
+    </div>
+{% endblock %}

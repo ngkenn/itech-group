@@ -18,6 +18,9 @@ def index(request):
     response = render(request, 'actifind/index.html', context_dict)
     return response
 
+def about(request):
+    response = render(request, 'actifind/about.html')
+    return response
 
 def show_activity(request, activity_name_slug):
     context_dict = {
@@ -59,11 +62,11 @@ def add_activity(request):
                 for tag_name in tags:
                     tag = Tag.objects.get_or_create(name=tag_name)[0]
                     activity.tags.add(tag)
-            
+
             return index(request)
         else:
             print(form.errors)
-    
+
     context_dict = {
         "GOOGLE_MAPS_KEY": settings.GOOGLE_MAPS_KEY,
         "form": form
@@ -125,7 +128,7 @@ def add_review(request):
         activity_slug = request.POST['activity']
     if activity_slug:
         try:
-            activity = Activity.objects.get(slug=activity_slug) 
+            activity = Activity.objects.get(slug=activity_slug)
             rating = int(request.POST['rating'])
             title = request.POST['title']
             description = request.POST['description']
@@ -133,7 +136,7 @@ def add_review(request):
             review.save()
         except Activity.DoesNotExist:
             review = None
-    
+
     return HttpResponse(review)
 
 # def add_review(request, activity_name_slug):
@@ -161,7 +164,7 @@ def add_review(request):
 def show_pictures(request, activity_name_slug):
     context_dict = {}
 
-    try: 
+    try:
         activity = Activity.objects.get(slug=activity_name_slug)
         context_dict['activity'] = activity
     except Activity.DoesNotExist:
@@ -173,7 +176,7 @@ def show_pictures(request, activity_name_slug):
             first_picture = pictures[0]
             context_dict["first_picture"] = first_picture
             context_dict["pictures"] = pictures[1:]
-    
+
     return render(request, 'actifind/show_pictures.html', context_dict)
 
 
@@ -228,7 +231,7 @@ def profile(request, username):
 def upload_picture(request, activity_name_slug):
     context_dict = {}
 
-    try: 
+    try:
         activity = Activity.objects.get(slug=activity_name_slug)
         context_dict['activity'] = activity
     except Activity.DoesNotExist:
@@ -244,7 +247,7 @@ def upload_picture(request, activity_name_slug):
             return HttpResponseRedirect(reverse('index'))
     else:
         form = UploadPictureForm()
-    
+
     context_dict['form'] = form
 
     return render(request, 'actifind/upload_picture.html', context_dict) #Put where the page is
@@ -274,5 +277,5 @@ def show_my_reviews(request):
         page = int(request.GET.get('page') or 1)
         reviews = paginator.page(page)
         context_dict['reviews'] = reviews
-    
+
     return render(request, 'actifind/show_my_reviews.html', context_dict)
