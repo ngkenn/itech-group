@@ -41,3 +41,7 @@ def show_reviews(reviews, include_links=False):
         "include_links": include_links
     }
     return context_dict
+
+@register.inclusion_tag('actifind/activity_list.html')
+def show_activity_list(activities):
+    return { "activities": activities }

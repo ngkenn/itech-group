@@ -37,28 +37,7 @@
                 Featured
             </h5>
             <div class="row" id="featured-cards" class="col-12">
-            {% if activities %}
-                {% for activity in activities %}
-                        <a href="{% url 'show_activity' activity.slug %}" class="col-md card-links">
-                                <div class="card bg-dark text-white">
-                                    {% if activity.picture_set.count > 0%}
-                                        <img class="card-img" src="{{MEDIA_URL}}{{ activity.picture_set.all.0.picture}}">
-                                    {% else %}
-                                    <p class="no-img-text">Sorry, no one has uploaded pictures.</p>
-                                    {% endif %}
-                                    <div class="card-img-overlay">
-                                        <div class="text-bg-gradient">
-                                            <h5 class="card-title">{{ activity.name }}</h5>
-                                            <p class="card-rating">{% show_stars activity.avgRating %}</p>
-                                        </div>
-                                    </div>
-                                    
-                                </div>
-                            </a>
-                    {% endfor %}
-            {% else %}
-                <strong>There are no activities present.</strong>
-            {% endif %}
+                {% show_activity_list activities %}
             </div>
         </div>
     </div>
