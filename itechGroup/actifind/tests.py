@@ -61,11 +61,20 @@ class ModelTest(TestCase):
 
     #Unit test for review model
 
-    def create_Review(self, title='Glasgow', rating='3', message='Very busy', activity_id='6', user_id='8'):
+    def create_review(self, title='Glasgow', rating='3', message='Very busy', activity_id='6', user_id='8'):
         return Review.objects.create(title=title, rating=rating, message=message,activity_id=activity_id, user_id=user_id)
 
     def test_review_creation(self):
-        r = self.create_testReview()
+        r = self.create_review()
 
         self.assertTrue(isinstance(r, Review))
         self.assertEqual(r.__str__(), r.title)
+
+    def test_view(self):
+        r = self.create_review()
+        url = reverse("add_review")
+        resp = self.client.get(url)
+
+        #redirect due to user not logged in
+        self.assertEqual(resp.status_code, 302)
+
