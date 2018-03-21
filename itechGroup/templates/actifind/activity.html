@@ -58,7 +58,7 @@
               {% add_review_modal %}
             {% endif %}
             <div class="activity-review-group">
-              {% if reviews.count > 0 %}
+              {% if reviews %}
                   {% show_reviews reviews %}
               {% else %}
                 <p>Be the first to leave a review!</p>

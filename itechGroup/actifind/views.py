@@ -26,12 +26,14 @@ def show_activity(request, activity_name_slug):
 
     try:
         activity = Activity.objects.get(slug=activity_name_slug)
-        review_list = activity.review_set.all().order_by('-id')
-        paginator = Paginator(review_list, 4)
-        page = int(request.GET.get('page') or 1)
-        reviews = paginator.page(page)
         context_dict['activity'] = activity
-        context_dict['reviews'] = reviews
+
+        if activity.review_set.count() > 0:
+            review_list = activity.review_set.all().order_by('-id')
+            paginator = Paginator(review_list, 4)
+            page = int(request.GET.get('page') or 1)
+            reviews = paginator.page(page)
+            context_dict['reviews'] = reviews
 
     except Activity.DoesNotExist:
         context_dict['activity'] = None
