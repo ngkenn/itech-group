@@ -1,0 +1,29 @@
+@import url(https://fonts.googleapis.com/css?family=Lato:300);
+
+
+.center_img{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 40%;
+}
+
+.profile-text {
+    margin-top:20px;
+  background: white;
+  border-radius: 3px;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.1)
+}
+
+.profile-name{
+  margin-right: auto;
+  margin-bottom: auto;
+  margin-left: auto;
+  border-bottom: 1px solid rgba(0,0,0,0.1);
+  font-size: 12px;
+  text-transform: uppercase;
+}
+
+.profile-title {
+  color: #ccc;
+}
