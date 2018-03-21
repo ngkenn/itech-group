@@ -1,5 +1,5 @@
 {%  extends 'actifind/base.html' %}
-<!-- Extension of base, which needs a folder to locate? -->
+
 {% load staticfiles %}
 {% load partials %}
 
@@ -13,12 +13,8 @@
 {% block body_block %}
 <div>
     <h1>Discover Your Day</h1>
-       <!-- Previous search bar -->
 
     <div>
-        <h2>
-            <!-- Maps API + Search results-->
-        </h2>
 
         <div>
             {% show_activity_list activities %}

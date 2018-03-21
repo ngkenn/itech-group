@@ -10,6 +10,7 @@ from datetime import datetime
 import random
 
 def populate():
+    # Create user models
     users = [
         {
             "username": 'testuser',
@@ -63,7 +64,7 @@ def populate():
         },
     ]
 
-
+    # Review models
     running_at_loch_lomond_reviews =[
         {
             "title":"Great place for a run, will definitely be back",
@@ -379,7 +380,7 @@ def populate():
         },
     ]
 
-
+    # Activity models
     acts = {
         "Running at Loch Lomond": {
             "activity_type": "Running",

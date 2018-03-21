@@ -5,13 +5,15 @@ from django.db.models import Avg
 from django.contrib.auth.models import User
 from datetime import datetime
 
+# Tag model
 class Tag(models.Model):
     name = models.CharField(max_length=64, unique=True)
 
+    # String interpretation
     def __str__(self):
         return self.name
 
-
+# Activity model
 class Activity(models.Model):
     name = models.CharField(max_length=128, unique=True)
     activity_type = models.CharField(max_length=128)
@@ -23,21 +25,24 @@ class Activity(models.Model):
     tags = models.ManyToManyField(Tag)
     user = models.ForeignKey(User)
 
+    # Function to get average rating from review set
     @property
     def avgRating(self):
         return self.review_set.aggregate(Avg('rating'))['rating__avg'] or "No rating"
 
+    # Function to process data on save and assign slug
     def save(self, *args, **kwargs):
         self.slug = slugify(self.name)
         super(Activity, self).save(*args, **kwargs)
 
+    # String interpretations
     class Meta:
         verbose_name_plural = 'Activities'
 
     def __str__(self):
         return self.name
 
-
+# Picture model
 class Picture(models.Model):
     name = models.CharField(max_length=128)
     description = models.TextField(blank=True, default='')
@@ -48,7 +53,7 @@ class Picture(models.Model):
     def __str__(self):
         return self.name
 
-
+# Review model
 class Review(models.Model):
     title = models.CharField(max_length=128, blank=True, default='Review')
     date = models.DateField()
@@ -69,7 +74,7 @@ class Review(models.Model):
     def __str__(self):
         return self.title
 
-
+# User profile model, extension of User
 class UserProfile(models.Model):
     user = models.OneToOneField(User)
     picture = models.ImageField(upload_to='profile_images', blank=True)
