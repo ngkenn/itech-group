@@ -143,27 +143,6 @@ def add_review(request):
 
     return HttpResponse(review)
 
-# def add_review(request, activity_name_slug):
-#     try:
-#         activity = Activity.objects.get(slug=activity_name_slug)
-#     except Activity.DoesNotExist:
-#         category = None
-
-#     form = ReviewForm()
-#     if request.method == 'POST':
-#         form = PageForm(request.POST)
-
-#         if form.is_valid():
-#             if activity:
-#                 review = form.save(commit=False)
-#                 review.activity = activity
-#                 review.save
-#                 return show_activity(request, activity_name_slug)
-#         else:
-#             print(form.errors)
-
-#     context_dict = {'form':form, 'activity': activity}
-#     return render(request, 'actifind/add_review.html', context_dict)
 
 def show_pictures(request, activity_name_slug):
     context_dict = {}

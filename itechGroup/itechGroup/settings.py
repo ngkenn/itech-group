@@ -18,7 +18,6 @@ STATIC_DIR = os.path.join(BASE_DIR, 'static')
 
 SETTINGS_DIR = os.path.dirname(__file__)
 TEMPLATE_DIR = os.path.join(BASE_DIR, 'templates')
-#STATIC_DIR = os.path.join(BASE_DIR, 'static')
 MEDIA_DIR = os.path.join(BASE_DIR, 'media')
 
 PROJECT_PATH = os.path.join(SETTINGS_DIR, os.pardir)
@@ -32,7 +31,7 @@ PROJECT_PATH = os.path.abspath(PROJECT_PATH)
 SECRET_KEY = 'a8x^2zd@4+x&v76nje^66zietb37scir#a9+!41+-@+n4q@&5^'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = []
 

@@ -3,6 +3,7 @@ from actifind.models import Activity
 from actifind.models import Review, Activity, Picture, UserProfile
 from django.contrib.auth.models import User
 
+#Form to add an activity
 class ActivityForm(forms.ModelForm):
     name = forms.CharField(max_length=128,
                            help_text="Please enter the activity name.")
@@ -16,15 +17,8 @@ class ActivityForm(forms.ModelForm):
         model = Activity
         fields = ('name','activity_type','description', 'address')
 
-# class ReviewForm(forms.ModelForm):
-#     title = forms.CharField(max_length=128)
-#     date = forms.DateField(widget=forms.HiddenInput())
-#     rating = forms.IntegerField()
-#     class Meta:
-#         model = Review
-#         exclude= ('activity',)
 
-
+#Form to add a new user
 class UserForm(forms.ModelForm):
     password = forms.CharField(widget=forms.PasswordInput())
 
@@ -35,7 +29,7 @@ class UserForm(forms.ModelForm):
         }
         fields = ('username', 'email', 'password')
 
-
+#Create a new user profile
 class UserProfileForm(forms.ModelForm):
     class Meta:
         model = UserProfile
