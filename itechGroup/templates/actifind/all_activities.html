@@ -1,0 +1,22 @@
+{% extends 'actifind/base.html' %}
+{% load staticfiles %}
+{% load partials %}
+
+{% block title_block %}
+    All current activities
+{% endblock %}
+
+{% block body_block %}
+    <h1>Check out these activities</h1>
+    <div>
+  {% if activities %}
+<ul>
+    {% show_activity_list activities %}
+  
+</ul>
+{% else %}
+<strong>There are no actvities present.</strong>
+{% endif %}
+  </div>
+
+{% endblock %}

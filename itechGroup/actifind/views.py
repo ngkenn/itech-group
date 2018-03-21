@@ -22,6 +22,10 @@ def about(request):
     response = render(request, 'actifind/about.html')
     return response
 
+def all_activities(request):
+    response = render(request, 'actifind/all_activities.html')
+    return response
+
 def show_activity(request, activity_name_slug):
     context_dict = {
         "GOOGLE_MAPS_KEY": settings.GOOGLE_MAPS_KEY
